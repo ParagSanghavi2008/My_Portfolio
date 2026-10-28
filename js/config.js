@@ -8,7 +8,8 @@ window.PORTFOLIO_CONFIG = {
     name: "Parag Rajeshkumar Sanghavi",
     role: "Computer Science Engineering Student | Aspiring AI/ML Engineer",
     location: "Maharashtra, India",
-    education: "B.Tech in Computer Science Engineering (AI & ML)",
+    college: "Newton School of Technology, Pune",
+    education: "B.Tech in Computer Science Engineering (AI & ML) • Newton School of Technology, Pune",
     status: "Currently learning & building",
     statusDetail: "1st Year B.Tech • Consistent Daily Practice",
     headline: "Building intelligent solutions for real-world problems.",
@@ -21,6 +22,7 @@ window.PORTFOLIO_CONFIG = {
     email: "paragsanghavi.101@gmail.com",
     github: "https://github.com/ParagSanghavi2008",
     linkedin: "https://www.linkedin.com/in/paragsanghavi", // Placeholder: update with your LinkedIn handle
+    photo: "assets/images/parag.jpg",
     resumeUrl: "" // Leave empty if not yet available, or add your Google Drive/PDF link
   },
 
