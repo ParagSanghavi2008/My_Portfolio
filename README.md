@@ -20,32 +20,6 @@ Portfolio/
 
 ---
 
-## 🎨 Key Features & Design Choices
-
-1. **AI Neural Network Canvas Visualizer**:
-   - High-performance, retina-scaled HTML5 canvas in the hero section.
-   - Nodes representing neurons and data packets connected by dynamic synaptic lines.
-   - Interactive mouse/touch gravitational attraction and synaptic energy pulses.
-   - Automatically pauses render loop when scrolled out of view to preserve 60fps performance and zero battery drain.
-   - Full support for `prefers-reduced-motion`.
-
-2. **Accent Palette Switcher**:
-   - Click the accent pill in the navigation header to cycle between **Electric Blue**, **Cyber Violet**, and **Emerald Green**.
-   - Your choice is persisted in `localStorage`.
-
-3. **Honest Engineering Metrics**:
-   - In accordance with academic integrity, skills and projects represent true status without fake progress bars or arbitrary percentages.
-   - Status chips: `Primary Focus`, `Learning`, `Foundational`, `In Development / Prototype`, `Active Repository`, `Coming Soon`.
-
-4. **Interactive Project System Architecture Modal**:
-   - Clicking *"Architecture & Details"* on any project opens a focused, frosted-glass modal detailing the problem context, algorithmic approach, and system design highlights.
-
-5. **Contact Handling with Integrity**:
-   - The contact form provides client-side validation and a transparent dispatch modal that offers a 1-click **"Open Email Client"** action or simple instructions for connecting a backend service (e.g. Formspree or EmailJS).
-   - Includes a 1-click **Copy to Clipboard** button with toast feedback for your email address.
-
----
-
 ## ✏️ How to Customize Your Information
 
 All dynamic project details, personal links, and journey milestones can be customized in **two quick places**:
