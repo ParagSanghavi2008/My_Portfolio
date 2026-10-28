@@ -1,32 +1,4 @@
-# Parag Rajeshkumar Sanghavi — Personal Developer Portfolio
-
-A modern, minimal, high-performance personal portfolio website for **Parag Rajeshkumar Sanghavi**, a first-year Computer Science Engineering student specializing in **Artificial Intelligence & Machine Learning** from Maharashtra, India.
-
-Built with an aesthetic dark theme, glassmorphic surfaces, an interactive HTML5 AI neural network canvas, and responsive layouts.
-
----
-
-## 🚀 Live Local Preview
-
-This project is built using zero-dependency, standard-compliant semantic **HTML5**, **Vanilla CSS3**, and **Modern ES6+ JavaScript**. It requires no Node/npm build steps, compiles instantaneously, and runs in any web browser.
-
-### Option 1: Python Built-in HTTP Server (Instant)
-
-Open your terminal in the portfolio directory and run:
-
-```bash
-# macOS / Linux
-python3 -m http.server 3000
-
-# Windows
-python -m http.server 3000
-```
-
-Then visit [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Option 2: VS Code Live Server Extension
-1. Open the project folder in VS Code / Antigravity IDE.
-2. Right-click on `index.html` and click **"Open with Live Server"**.
+# Parag Rajeshkumar Sanghavi 
 
 ---
 
