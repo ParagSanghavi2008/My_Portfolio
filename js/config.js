@@ -1,3 +1,4 @@
+
 /**
  * Parag Rajeshkumar Sanghavi - Portfolio Configuration
  * Centralized data configuration for easy customization without altering HTML markup.
@@ -116,6 +117,35 @@ window.PORTFOLIO_CONFIG = {
         paper: ""
       },
       iconType: "brain"
+    },
+    {
+      id: "calcmate-calculator",
+      title: "CalcMate Calculator",
+      badge: "Live Project",
+      badgeType: "success",
+      category: "Web & Python Utility",
+      tagline: "A responsive calculator with a polished interface and a Python command-line version.",
+      description: "A standalone web calculator for addition, subtraction, multiplication, division, square roots, cube roots, decimal input, and chained calculations. It includes responsive touch-friendly controls, keyboard input, tactile feedback, optional vibration, and a small Python CLI version.",
+      extendedDetails: {
+        problemStatement: "Provide a simple calculator that works smoothly across devices and remains usable without installation or an internet connection.",
+        approach: "Built as a standalone HTML page with responsive styling and browser-based calculator behavior, alongside a Python command-line implementation.",
+        architectureHighlights: [
+          "Basic arithmetic with square and cube roots, including negative cube roots",
+          "Decimal input and chained calculations",
+          "Responsive interface with touch-friendly buttons and press feedback",
+          "Keyboard support for digits, operators, Enter, Backspace, and Escape",
+          "Optional device vibration and subtle click sounds",
+          "Python command-line calculator"
+        ],
+        statusNote: "Completed and published with a live web version and a Python command-line version."
+      },
+      tags: ["HTML", "CSS", "JavaScript", "Python", "Responsive Design"],
+      links: {
+        github: "https://github.com/ParagSanghavi2008/Project-Calculator",
+        liveDemo: "https://calculator-activator.vercel.app/",
+        paper: ""
+      },
+      iconType: "code"
     }
   ],
 
