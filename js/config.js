@@ -142,7 +142,7 @@ window.PORTFOLIO_CONFIG = {
       tags: ["HTML", "CSS", "JavaScript", "Python", "Responsive Design"],
       links: {
         github: "https://github.com/ParagSanghavi2008/Project-Calculator",
-        liveDemo: "https://calculator-activator.vercel.app/",
+        liveDemo: "https://project-calculator-lemon.vercel.app/",
         paper: ""
       },
       iconType: "code"
