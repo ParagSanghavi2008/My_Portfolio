@@ -88,64 +88,6 @@ window.PORTFOLIO_CONFIG = {
         paper: ""
       },
       iconType: "code"
-    },
-    {
-      id: "study-ai-chatbot",
-      title: "Study AI Chatbot",
-      badge: "Live Project",
-      badgeType: "success",
-      category: "AI & Education Tech",
-      tagline: "A full-featured AI-powered personal study assistant with multi-mode learning and PDF analysis.",
-      description: "An end-to-end AI study companion built with Vanilla JavaScript and the Groq Cloud API. Features include multi-mode AI chat (tutor, quiz, explain, debate), PDF upload and analysis, notes management, a quiz engine with scoring, revision history, progress tracking, 13 custom themes, and a secure multi-user authentication system with forgot-password recovery.",
-      extendedDetails: {
-        problemStatement: "Students often lack a personalized, interactive study tool that adapts to their learning mode — switching fluidly between guided tutoring, self-quizzing, debate, and document analysis without switching apps.",
-        approach: "Built as a single-page application with no framework dependencies, using the Groq Cloud LLM API (llama-3.3-70b-versatile) for fast intelligent responses. PDF.js powers in-browser PDF parsing, Marked.js renders markdown, and all user data persists securely in localStorage.",
-        architectureHighlights: [
-          "Multi-user authentication with hashed sessions & forgot-password (name verification)",
-          "5 AI study modes: Chat, Tutor, Quiz Me, Explain & Debate",
-          "PDF upload, parsing, and context-aware AI Q&A",
-          "Chat & Revision History with search, markdown export, and Quick Review",
-          "13 premium themes including Cosmic Nebula, Sakura Blossom, Nordic Aurora & more",
-          "Notes manager, quiz engine with live scoring, and study progress tracker"
-        ],
-        statusNote: "Fully completed and live on GitHub. All core features implemented including authentication, history, themes, and AI-powered study modes."
-      },
-      tags: ["Artificial Intelligence", "JavaScript", "Groq API", "PDF.js", "Education Tech", "SPA"],
-      links: {
-        github: "https://github.com/ParagSanghavi2008/Project-StudyAI-Chatbot",
-        liveDemo: "",
-        paper: ""
-      },
-      iconType: "brain"
-    },
-    {
-      id: "calcmate-calculator",
-      title: "CalcMate Calculator",
-      badge: "Live Project",
-      badgeType: "success",
-      category: "Web & Python Utility",
-      tagline: "A responsive calculator with a polished interface and a Python command-line version.",
-      description: "A standalone web calculator for addition, subtraction, multiplication, division, square roots, cube roots, decimal input, and chained calculations. It includes responsive touch-friendly controls, keyboard input, tactile feedback, optional vibration, and a small Python CLI version.",
-      extendedDetails: {
-        problemStatement: "Provide a simple calculator that works smoothly across devices and remains usable without installation or an internet connection.",
-        approach: "Built as a standalone HTML page with responsive styling and browser-based calculator behavior, alongside a Python command-line implementation.",
-        architectureHighlights: [
-          "Basic arithmetic with square and cube roots, including negative cube roots",
-          "Decimal input and chained calculations",
-          "Responsive interface with touch-friendly buttons and press feedback",
-          "Keyboard support for digits, operators, Enter, Backspace, and Escape",
-          "Optional device vibration and subtle click sounds",
-          "Python command-line calculator"
-        ],
-        statusNote: "Completed and published with a live web version and a Python command-line version."
-      },
-      tags: ["HTML", "CSS", "JavaScript", "Python", "Responsive Design"],
-      links: {
-        github: "https://github.com/ParagSanghavi2008/Project-Calculator",
-        liveDemo: "https://project-calculator-lemon.vercel.app/",
-        paper: ""
-      },
-      iconType: "code"
     }
   ],
 
