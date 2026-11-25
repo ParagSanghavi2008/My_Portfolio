@@ -103,39 +103,77 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Aurora Wave Background Animation */
-body::before {
-  content: '';
+/* ── Mesh Gradient Blob Background ── */
+.mesh-bg {
   position: fixed;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 45% at 50% 80%, rgba(99, 102, 241, 0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 10% 90%, rgba(34, 211, 238, 0.07) 0%, transparent 50%),
-    radial-gradient(ellipse 55% 40% at 90% 10%, rgba(217, 70, 239, 0.08) 0%, transparent 50%);
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  animation: aurora-drift 18s ease-in-out infinite alternate;
-  will-change: transform;
+  /* noise texture overlay for depth */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse 65% 45% at 70% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 75% 50% at 30% 70%, rgba(168, 85, 247, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 38% at 60% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-  animation: aurora-drift-reverse 24s ease-in-out infinite alternate;
-  will-change: transform;
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform, border-radius;
+  mix-blend-mode: screen;
+}
+
+/* Blob 1 — Cyan — top-left */
+.mesh-blob-1 {
+  width: 700px; height: 700px;
+  left: -15%; top: -10%;
+  background: radial-gradient(circle at 40% 40%, #0ea5e9, #0369a1 60%, transparent 80%);
+  animation: blob-morph-1 20s ease-in-out infinite alternate;
+}
+
+/* Blob 2 — Violet — top-right */
+.mesh-blob-2 {
+  width: 650px; height: 650px;
+  right: -15%; top: 5%;
+  background: radial-gradient(circle at 60% 35%, #a855f7, #7c3aed 60%, transparent 80%);
+  animation: blob-morph-2 25s ease-in-out infinite alternate;
+}
+
+/* Blob 3 — Indigo — center */
+.mesh-blob-3 {
+  width: 500px; height: 500px;
+  left: 30%; top: 25%;
+  background: radial-gradient(circle at 50% 50%, #6366f1, #4338ca 60%, transparent 80%);
+  animation: blob-morph-3 18s ease-in-out infinite alternate;
+  opacity: 0.35;
+}
+
+/* Blob 4 — Rose — bottom-left */
+.mesh-blob-4 {
+  width: 600px; height: 600px;
+  left: -10%; bottom: -5%;
+  background: radial-gradient(circle at 40% 60%, #e879f9, #9d174d 60%, transparent 80%);
+  animation: blob-morph-4 22s ease-in-out infinite alternate;
+  opacity: 0.4;
+}
+
+/* Blob 5 — Teal — bottom-right */
+.mesh-blob-5 {
+  width: 580px; height: 580px;
+  right: -12%; bottom: 0%;
+  background: radial-gradient(circle at 55% 55%, #2dd4bf, #0f766e 60%, transparent 80%);
+  animation: blob-morph-5 28s ease-in-out infinite alternate;
+  opacity: 0.38;
+}
+
+/* Blob 6 — Deep Blue — center-bottom (subtle tie) */
+.mesh-blob-6 {
+  width: 450px; height: 450px;
+  left: 50%; top: 60%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 50% 45%, #3b82f6, #1e3a8a 60%, transparent 80%);
+  animation: blob-morph-6 32s ease-in-out infinite alternate;
+  opacity: 0.28;
 }
 
 /* Body lock when mobile menu or modal is active */

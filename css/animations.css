@@ -310,23 +310,51 @@
 }
 
 /* ============================================
-   AURORA WAVE BACKGROUND KEYFRAMES
+   MESH GRADIENT BLOB MORPHING KEYFRAMES
+   Six blobs, each with unique border-radius morph paths
+   and drift translations — no two look the same
    ============================================ */
 
-@keyframes aurora-drift {
-  0%   { transform: translate(0%, 0%)    rotate(0deg)   scale(1); }
-  25%  { transform: translate(3%, -4%)   rotate(2deg)   scale(1.04); }
-  50%  { transform: translate(-3%, 5%)   rotate(-1deg)  scale(1.02); }
-  75%  { transform: translate(5%, 2%)    rotate(3deg)   scale(1.05); }
-  100% { transform: translate(-4%, -3%)  rotate(-2deg)  scale(1.03); }
+@keyframes blob-morph-1 {
+  0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0)   scale(1);    }
+  33%  { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(6%, 8%)  scale(1.07); }
+  66%  { border-radius: 55% 45% 60% 40% / 45% 55% 50% 60%; transform: translate(-4%, 5%) scale(0.96); }
+  100% { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(8%, -3%) scale(1.04); }
 }
 
-@keyframes aurora-drift-reverse {
-  0%   { transform: translate(0%, 0%)    rotate(0deg)   scale(1.02); }
-  25%  { transform: translate(-4%, 3%)   rotate(-3deg)  scale(1); }
-  50%  { transform: translate(5%, -4%)   rotate(2deg)   scale(1.05); }
-  75%  { transform: translate(-2%, -5%)  rotate(-1deg)  scale(1.03); }
-  100% { transform: translate(4%, 4%)    rotate(2deg)   scale(1); }
+@keyframes blob-morph-2 {
+  0%   { border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%; transform: translate(0, 0)    scale(1);    }
+  33%  { border-radius: 35% 65% 45% 55% / 55% 45% 65% 35%; transform: translate(-7%, 5%) scale(1.08); }
+  66%  { border-radius: 65% 35% 55% 45% / 35% 65% 45% 55%; transform: translate(4%, 9%)  scale(0.94); }
+  100% { border-radius: 45% 55% 35% 65% / 65% 35% 55% 45%; transform: translate(-5%, -6%) scale(1.06); }
+}
+
+@keyframes blob-morph-3 {
+  0%   { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; transform: translate(0, 0)   rotate(0deg)   scale(1);    }
+  25%  { border-radius: 40% 60% 50% 50% / 50% 60% 40% 60%; transform: translate(5%, -6%) rotate(10deg) scale(1.1);  }
+  50%  { border-radius: 60% 40% 40% 60% / 40% 60% 60% 40%; transform: translate(-6%, 4%) rotate(-8deg) scale(0.92); }
+  75%  { border-radius: 50% 60% 55% 45% / 55% 45% 50% 60%; transform: translate(3%, 7%)  rotate(5deg)  scale(1.05); }
+  100% { border-radius: 45% 55% 60% 40% / 60% 50% 40% 55%; transform: translate(-4%, -4%) rotate(-4deg) scale(1.02); }
+}
+
+@keyframes blob-morph-4 {
+  0%   { border-radius: 60% 40% 50% 50% / 50% 60% 40% 55%; transform: translate(0, 0)    scale(1);    }
+  33%  { border-radius: 45% 55% 60% 40% / 60% 40% 55% 45%; transform: translate(8%, -4%)  scale(1.06); }
+  66%  { border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%; transform: translate(-3%, -7%) scale(0.95); }
+  100% { border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%; transform: translate(5%, 6%)   scale(1.08); }
+}
+
+@keyframes blob-morph-5 {
+  0%   { border-radius: 50% 60% 45% 55% / 55% 45% 60% 40%; transform: translate(0, 0)    scale(1);    }
+  40%  { border-radius: 65% 35% 55% 45% / 45% 65% 40% 55%; transform: translate(-6%, 5%) scale(1.09); }
+  80%  { border-radius: 40% 60% 65% 35% / 60% 40% 50% 50%; transform: translate(4%, -6%)  scale(0.93); }
+  100% { border-radius: 55% 45% 50% 50% / 40% 55% 60% 45%; transform: translate(-3%, 3%)  scale(1.04); }
+}
+
+@keyframes blob-morph-6 {
+  0%   { border-radius: 55% 45% 60% 40% / 60% 55% 40% 50%; transform: translateX(-50%) translate(0, 0)    scale(1);    }
+  50%  { border-radius: 40% 60% 45% 55% / 45% 40% 60% 55%; transform: translateX(-50%) translate(5%, -8%) scale(1.12); }
+  100% { border-radius: 60% 40% 55% 45% / 55% 60% 45% 40%; transform: translateX(-50%) translate(-5%, 6%)  scale(0.9);  }
 }
 
 /* ============================================
