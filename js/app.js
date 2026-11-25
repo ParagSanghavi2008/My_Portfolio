@@ -1,11 +1,13 @@
 /**
  * Parag Rajeshkumar Sanghavi - Portfolio Main Script
- * Handles navigation, mobile menu, scroll spy, project modals,
+ * Handles page navigation, menu, project modals,
  * contact form verification, email copy, and theme accents.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
+
+  document.documentElement.classList.add('js-ready');
 
   const pageLoader = document.getElementById('page-loader');
   if (pageLoader) {
@@ -44,24 +46,58 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Mobile Navigation Drawer
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  navLinks.forEach(link => {
+    const linkedPage = new URL(link.href, window.location.href).pathname.split('/').pop() || 'index.html';
+    const isCurrentPage = linkedPage === currentPage;
+    link.classList.toggle('active', isCurrentPage);
+
+    if (isCurrentPage) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
 
   if (navToggle && navMenu) {
+    function closeNavigation() {
+      navMenu.classList.remove('is-open');
+      navToggle.classList.remove('is-active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('nav-lock');
+    }
+
     navToggle.addEventListener('click', () => {
       const isOpen = navMenu.classList.toggle('is-open');
       navToggle.classList.toggle('is-active', isOpen);
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.classList.toggle('nav-lock', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      document.body.classList.toggle('nav-lock', isOpen && window.matchMedia('(max-width: 867px)').matches);
     });
 
-    // Close menu when clicking any nav link
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('is-open');
-        navToggle.classList.remove('is-active');
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('nav-lock');
-      });
+      link.addEventListener('click', closeNavigation);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
+        closeNavigation();
+        navToggle.focus();
+      }
+    });
+
+    document.addEventListener('click', event => {
+      if (
+        navMenu.classList.contains('is-open')
+        && event.target instanceof Node
+        && !navMenu.contains(event.target)
+        && !navToggle.contains(event.target)
+      ) {
+        closeNavigation();
+      }
     });
   }
 
@@ -107,32 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Scroll Spy Navigation Highlight
-  const sections = document.querySelectorAll('section[id]');
-  function updateScrollSpy() {
-    const scrollY = window.pageYOffset;
-    const headerHeight = header ? header.offsetHeight + 40 : 100;
-
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - headerHeight;
-      const sectionId = current.getAttribute('id');
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        });
-      }
-    });
-  }
-  window.addEventListener('scroll', updateScrollSpy, { passive: true });
-  updateScrollSpy();
-
-  // 5. Scroll Reveal Animation using IntersectionObserver
+  // 4. Scroll Reveal Animation using IntersectionObserver
   const revealElements = document.querySelectorAll('.reveal-on-scroll');
   if ('IntersectionObserver' in window && revealElements.length > 0) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -387,10 +398,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        const rotateX = ((y - centerY) / centerY) * -7;
-        const rotateY = ((x - centerX) / centerX) * 7;
+        const rotateX = ((y - centerY) / centerY) * -3;
+        const rotateY = ((x - centerX) / centerX) * 3;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-2px)`;
         card.style.setProperty('--mouse-x', `${(x / rect.width * 100).toFixed(1)}%`);
         card.style.setProperty('--mouse-y', `${(y / rect.height * 100).toFixed(1)}%`);
       });

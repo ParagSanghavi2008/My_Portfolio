@@ -6,14 +6,23 @@
 
 ```
 Portfolio/
-├── index.html            # Semantic HTML5 markup, OpenGraph, accessibility landmarks
+├── index.html            # Home page
+├── about.html             # About
+├── skills.html            # Skills
+├── projects.html          # Projects
+├── open-source.html       # Open Source
+├── journey.html           # Journey
+├── education.html         # Education
+├── achievements.html      # Achievements
+├── activities.html        # Activities
+├── contact.html           # Contact
 ├── css/
-│   ├── main.css          # Design system tokens, typography, colors, responsive resets
-│   ├── components.css    # Cards, badges, buttons, timeline, navigation, modals
-│   └── animations.css    # Subtle glows, glass effects, keyframes, transitions
+│   ├── main.css          # Design tokens, typography, colors, and animated background
+│   ├── components.css    # Cards, buttons, navigation, modals, and forms
+│   └── animations.css    # Aurora/name marquee, navigation motion, and transitions
 ├── js/
 │   ├── config.js         # Centralized personal info, links, projects & journey data
-│   └── app.js            # Main controller: scroll spy, mobile drawer, modals, form validation
+│   └── app.js            # Navigation, modals, form validation, and motion
 └── README.md             # Documentation, customisation guide & deployment instructions
 ```
 
