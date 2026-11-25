@@ -5,12 +5,12 @@
 
 :root {
   /* Core Canvas & Surfaces with 3D Depth */
-  --bg-deep: #030611;
-  --bg-surface: #070c1a;
-  --bg-card: rgba(11, 17, 33, 0.68);
-  --bg-card-hover: rgba(17, 26, 48, 0.82);
-  --bg-glass: rgba(7, 11, 22, 0.78);
-  --bg-input: rgba(13, 20, 38, 0.65);
+  --bg-deep: #020810;
+  --bg-surface: #05101e;
+  --bg-card: rgba(5, 16, 32, 0.72);
+  --bg-card-hover: rgba(8, 22, 44, 0.88);
+  --bg-glass: rgba(4, 12, 26, 0.80);
+  --bg-input: rgba(6, 18, 36, 0.68);
 
   /* Typography Colors */
   --text-primary: #f8fafc;
@@ -24,12 +24,12 @@
   --border-hover: rgba(56, 189, 248, 0.35);
   --border-active: rgba(56, 189, 248, 0.6);
 
-  /* Default Accent: Electric Blue */
+  /* Default Accent: Cyan → Gold gradient */
   --accent: #38bdf8;
   --accent-light: #7dd3fc;
   --accent-dark: #0284c7;
   --accent-glow: rgba(56, 189, 248, 0.22);
-  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #f59e0b 100%);
   --accent-soft: rgba(56, 189, 248, 0.1);
 
   /* Status Colors */
@@ -54,16 +54,16 @@
   --transition-fast: 0.15s ease;
 }
 
-/* Violet Accent Theme */
-[data-accent="violet"] {
-  --accent: #a855f7;
-  --accent-light: #c084fc;
-  --accent-dark: #7e22ce;
-  --accent-glow: rgba(168, 85, 247, 0.24);
-  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  --accent-soft: rgba(168, 85, 247, 0.12);
-  --border-hover: rgba(168, 85, 247, 0.4);
-  --border-active: rgba(168, 85, 247, 0.7);
+/* Gold Accent Theme (replaces violet) */
+[data-accent="gold"] {
+  --accent: #f59e0b;
+  --accent-light: #fcd34d;
+  --accent-dark: #b45309;
+  --accent-glow: rgba(245, 158, 11, 0.24);
+  --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  --accent-soft: rgba(245, 158, 11, 0.12);
+  --border-hover: rgba(245, 158, 11, 0.4);
+  --border-active: rgba(245, 158, 11, 0.7);
 }
 
 /* Emerald Accent Theme */
@@ -79,7 +79,9 @@
 }
 
 /* Base Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -131,33 +133,34 @@ body {
   animation: blob-morph-1 20s ease-in-out infinite alternate;
 }
 
-/* Blob 2 — Violet — top-right */
+/* Blob 2 — Gold/Amber — top-right */
 .mesh-blob-2 {
   width: 650px; height: 650px;
   right: -15%; top: 5%;
-  background: radial-gradient(circle at 60% 35%, #a855f7, #7c3aed 60%, transparent 80%);
+  background: radial-gradient(circle at 60% 35%, #f59e0b, #d97706 60%, transparent 80%);
   animation: blob-morph-2 25s ease-in-out infinite alternate;
+  opacity: 0.45;
 }
 
-/* Blob 3 — Indigo — center */
+/* Blob 3 — Cyan-teal mix — center */
 .mesh-blob-3 {
   width: 500px; height: 500px;
   left: 30%; top: 25%;
-  background: radial-gradient(circle at 50% 50%, #6366f1, #4338ca 60%, transparent 80%);
+  background: radial-gradient(circle at 50% 50%, #22d3ee, #0891b2 60%, transparent 80%);
   animation: blob-morph-3 18s ease-in-out infinite alternate;
-  opacity: 0.35;
+  opacity: 0.32;
 }
 
-/* Blob 4 — Rose — bottom-left */
+/* Blob 4 — Coral/Orange — bottom-left */
 .mesh-blob-4 {
   width: 600px; height: 600px;
   left: -10%; bottom: -5%;
-  background: radial-gradient(circle at 40% 60%, #e879f9, #9d174d 60%, transparent 80%);
+  background: radial-gradient(circle at 40% 60%, #fb923c, #ea580c 60%, transparent 80%);
   animation: blob-morph-4 22s ease-in-out infinite alternate;
-  opacity: 0.4;
+  opacity: 0.38;
 }
 
-/* Blob 5 — Teal — bottom-right */
+/* Blob 5 — Teal/Emerald — bottom-right */
 .mesh-blob-5 {
   width: 580px; height: 580px;
   right: -12%; bottom: 0%;
@@ -166,12 +169,12 @@ body {
   opacity: 0.38;
 }
 
-/* Blob 6 — Deep Blue — center-bottom (subtle tie) */
+/* Blob 6 — Sky Blue — center-bottom (subtle tie) */
 .mesh-blob-6 {
   width: 450px; height: 450px;
   left: 50%; top: 60%;
   transform: translateX(-50%);
-  background: radial-gradient(circle at 50% 45%, #3b82f6, #1e3a8a 60%, transparent 80%);
+  background: radial-gradient(circle at 50% 45%, #38bdf8, #0369a1 60%, transparent 80%);
   animation: blob-morph-6 32s ease-in-out infinite alternate;
   opacity: 0.28;
 }
@@ -205,7 +208,7 @@ body.modal-lock {
   width: 100vw;
   max-width: 1400px;
   height: 500px;
-  background: radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -213,7 +216,7 @@ body.modal-lock {
 /* Selection Color */
 ::selection {
   background: var(--accent);
-  color: #05070d;
+  color: #020810;
 }
 
 /* Accessible Skip Link */
@@ -222,7 +225,7 @@ body.modal-lock {
   top: -60px;
   left: 1rem;
   background: var(--accent);
-  color: #05070d;
+  color: #020810;
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 0.875rem;
@@ -236,7 +239,12 @@ body.modal-lock {
 }
 
 /* Typography Defaults */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--text-primary);
   line-height: 1.25;
@@ -378,6 +386,7 @@ a {
   .grid-2 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -387,6 +396,7 @@ a {
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .grid-4 {
     grid-template-columns: repeat(4, 1fr);
   }
