@@ -417,7 +417,7 @@ main section[id] {
 
 /* Helper Text Classes */
 .text-gradient {
-  background: var(--accent-gradient);
+  background: linear-gradient(135deg, var(--text-secondary) 0%, var(--text-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
