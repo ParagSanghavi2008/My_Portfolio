@@ -255,7 +255,7 @@ window.PORTFOLIO_CONFIG = {
     {
       institution: "Newton School of Technology, ADYPU, Pune",
       degree: "B.Tech in Computer Science Engineering (AI & ML)",
-      period: "2024 – Present",
+      period: "2026 – Present",
       status: "Currently Pursuing (1st Year)",
       location: "Pune, Maharashtra",
       highlights: [
@@ -270,7 +270,7 @@ window.PORTFOLIO_CONFIG = {
     {
       institution: "Sanjivani Junior College, Kopargaon",
       degree: "Higher Secondary (11th & 12th Grade) — Science",
-      period: "2022 – 2024",
+      period: "2024 – 2026",
       status: "Completed",
       location: "Kopargaon, Maharashtra",
       highlights: [
@@ -284,7 +284,7 @@ window.PORTFOLIO_CONFIG = {
     {
       institution: "Vidya International School, Yeola",
       degree: "Secondary School Education (Till 10th Grade)",
-      period: "Till 2022",
+      period: "Till 2023–2024",
       status: "Completed",
       location: "Yeola, Maharashtra",
       highlights: [
