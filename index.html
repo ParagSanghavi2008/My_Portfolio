@@ -38,21 +38,24 @@
   <link rel="stylesheet" href="css/animations.css">
 
   <!-- Favicon SVG Data URI -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2338bdf8'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='18' fill='%2305070d'>P</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2363899a'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='18' fill='%23101c25'>P</text></svg>">
 </head>
 <body>
 
   <!-- Accessible Skip Navigation Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Mesh Gradient Blob Background -->
-  <div class="mesh-bg" aria-hidden="true">
-    <div class="mesh-blob mesh-blob-1"></div>
-    <div class="mesh-blob mesh-blob-2"></div>
-    <div class="mesh-blob mesh-blob-3"></div>
-    <div class="mesh-blob mesh-blob-4"></div>
-    <div class="mesh-blob mesh-blob-5"></div>
-    <div class="mesh-blob mesh-blob-6"></div>
+  <!-- Flowing Aurora Background -->
+  <div class="aurora-bg" aria-hidden="true">
+    <span class="aurora-ribbon aurora-ribbon-1"></span>
+    <span class="aurora-ribbon aurora-ribbon-2"></span>
+    <span class="aurora-ribbon aurora-ribbon-3"></span>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <div class="page-loader" id="page-loader" role="status" aria-label="Loading portfolio">
+    <span class="loader-spinner" aria-hidden="true"></span>
+    <span class="loader-label">Loading portfolio</span>
   </div>
 
   <!-- ==========================================================================
@@ -84,7 +87,7 @@
 
       <!-- Nav Actions: Accent Theme Switcher & Mobile Toggle -->
       <div class="nav-actions">
-        <button type="button" class="theme-accent-btn" id="accent-toggle" aria-label="Toggle accent color palette" title="Switch Accent Hue (Blue / Violet / Emerald)">
+        <button type="button" class="theme-accent-btn" id="accent-toggle" aria-label="Toggle accent color palette" title="Switch blue-gray palette shade">
           <span class="accent-color-dot" aria-hidden="true"></span>
           <span id="accent-label">Blue</span>
         </button>
@@ -107,14 +110,6 @@
     <!-- 1. HERO SECTION -->
     <section class="hero-section" id="hero" aria-label="Introduction and Overview">
       
-      <!-- Interactive Neural Canvas Simulation & 3D Perspective Cyber-Grid -->
-      <div class="hero-canvas-wrapper" aria-hidden="true">
-        <canvas id="hero-canvas"></canvas>
-      </div>
-      <div class="cyber-grid-3d" aria-hidden="true">
-        <div class="cyber-grid-plane"></div>
-      </div>
-
       <div class="container hero-grid">
         
         <!-- Left: Text & CTA Content -->
@@ -1433,7 +1428,6 @@
 
   <!-- JavaScript Files -->
   <script src="js/config.js"></script>
-  <script src="js/canvas-network.js"></script>
   <script src="js/app.js"></script>
 
 </body>

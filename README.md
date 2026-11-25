@@ -13,7 +13,6 @@ Portfolio/
 │   └── animations.css    # Subtle glows, glass effects, keyframes, transitions
 ├── js/
 │   ├── config.js         # Centralized personal info, links, projects & journey data
-│   ├── canvas-network.js # Interactive AI Neural Synapse/Particle Constellation canvas
 │   └── app.js            # Main controller: scroll spy, mobile drawer, modals, form validation
 └── README.md             # Documentation, customisation guide & deployment instructions
 ```

@@ -90,7 +90,120 @@
    MOTION PRIMITIVES & 3D ANIMATION EFFECTS
    ========================================================================== */
 
+/* Slow, layered aurora movement for the page background */
+@keyframes aurora-drift-1 {
+  from {
+    transform: translate3d(-5%, -8%, 0) rotate(-12deg) scale(0.92);
+  }
+
+  to {
+    transform: translate3d(8%, 10%, 0) rotate(-5deg) scale(1.08);
+  }
+}
+
+@keyframes aurora-drift-2 {
+  from {
+    transform: translate3d(7%, -5%, 0) rotate(9deg) scale(1.06);
+  }
+
+  to {
+    transform: translate3d(-8%, 8%, 0) rotate(1deg) scale(0.94);
+  }
+}
+
+@keyframes aurora-drift-3 {
+  from {
+    transform: translate3d(-6%, 5%, 0) rotate(-7deg) scale(0.95);
+  }
+
+  to {
+    transform: translate3d(9%, -8%, 0) rotate(5deg) scale(1.06);
+  }
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-label-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes loader-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes loader-fallback-dismiss {
+  0%,
+  82% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-card-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 18px, 0) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 /* 1. 3D Perspective Card Tilt Container */
+.hero-content > * {
+  animation: hero-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-content > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.hero-content > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.hero-content > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.hero-content > :nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.hero-profile-card.float-slow {
+  animation:
+    hero-card-enter 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both,
+    subtle-float 7s ease-in-out 1s infinite;
+}
+
 .tilt-card {
   position: relative;
   transform-style: preserve-3d;
@@ -101,6 +214,25 @@
 
 .tilt-card:hover {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
+}
+
+.about-card,
+.pillar-item,
+.activity-card,
+.contact-info-panel {
+  transition:
+    transform var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.about-card:hover,
+.pillar-item:hover,
+.activity-card:hover,
+.contact-info-panel:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28), 0 0 20px var(--accent-glow);
 }
 
 .tilt-card>* {
@@ -169,127 +301,7 @@
   }
 }
 
-/* 3. 3D Cyber Horizon / Grid Animation */
-.cyber-grid-3d {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 480px;
-  perspective: 450px;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.28;
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-}
-
-.cyber-grid-plane {
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background-image:
-    linear-gradient(to right, rgba(56, 189, 248, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.25) 1px, transparent 1px);
-  background-size: 48px 48px;
-  transform: rotateX(72deg) translateY(-80px);
-  transform-origin: 50% 100%;
-  animation: cyber-grid-scroll 12s linear infinite;
-}
-
-@keyframes cyber-grid-scroll {
-  0% {
-    transform: rotateX(72deg) translateY(0);
-  }
-
-  100% {
-    transform: rotateX(72deg) translateY(48px);
-  }
-}
-
-/* 4. Ambient 3D Nebula Aurora Spheres */
-.nebula-sphere {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  opacity: 0.35;
-  will-change: transform;
-}
-
-.nebula-sphere-1 {
-  width: 500px;
-  height: 500px;
-  top: 15%;
-  left: -100px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(129, 140, 248, 0.15) 50%, transparent 70%);
-  animation: float-orb-1 18s ease-in-out infinite alternate;
-}
-
-.nebula-sphere-2 {
-  width: 600px;
-  height: 600px;
-  top: 50%;
-  right: -150px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(14, 165, 233, 0.12) 50%, transparent 70%);
-  animation: float-orb-2 22s ease-in-out infinite alternate;
-}
-
-.nebula-sphere-3 {
-  width: 550px;
-  height: 550px;
-  bottom: 10%;
-  left: 20%;
-  background: radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, rgba(52, 211, 153, 0.15) 50%, transparent 70%);
-  animation: float-orb-3 25s ease-in-out infinite alternate;
-}
-
-@keyframes float-orb-1 {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate3d(80px, 60px, 40px) scale(1.15);
-  }
-
-  100% {
-    transform: translate3d(-40px, 120px, -20px) scale(0.95);
-  }
-}
-
-@keyframes float-orb-2 {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate3d(-90px, -70px, 50px) scale(1.2);
-  }
-
-  100% {
-    transform: translate3d(50px, -110px, -30px) scale(0.9);
-  }
-}
-
-@keyframes float-orb-3 {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate3d(60px, -80px, 30px) scale(1.1);
-  }
-
-  100% {
-    transform: translate3d(-70px, 50px, -40px) scale(1.05);
-  }
-}
-
-/* 5. Magnetic CTA Button Sheen */
+/* 3. Magnetic CTA Button Sheen */
 .btn-motion-sheen {
   position: relative;
   overflow: hidden;
@@ -353,54 +365,6 @@
 }
 
 /* ============================================
-   MESH GRADIENT BLOB MORPHING KEYFRAMES
-   Six blobs, each with unique border-radius morph paths
-   and drift translations — no two look the same
-   ============================================ */
-
-@keyframes blob-morph-1 {
-  0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0)   scale(1);    }
-  33%  { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(6%, 8%)  scale(1.07); }
-  66%  { border-radius: 55% 45% 60% 40% / 45% 55% 50% 60%; transform: translate(-4%, 5%) scale(0.96); }
-  100% { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(8%, -3%) scale(1.04); }
-}
-
-@keyframes blob-morph-2 {
-  0%   { border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%; transform: translate(0, 0)    scale(1);    }
-  33%  { border-radius: 35% 65% 45% 55% / 55% 45% 65% 35%; transform: translate(-7%, 5%) scale(1.08); }
-  66%  { border-radius: 65% 35% 55% 45% / 35% 65% 45% 55%; transform: translate(4%, 9%)  scale(0.94); }
-  100% { border-radius: 45% 55% 35% 65% / 65% 35% 55% 45%; transform: translate(-5%, -6%) scale(1.06); }
-}
-
-@keyframes blob-morph-3 {
-  0%   { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; transform: translate(0, 0)   rotate(0deg)   scale(1);    }
-  25%  { border-radius: 40% 60% 50% 50% / 50% 60% 40% 60%; transform: translate(5%, -6%) rotate(10deg) scale(1.1);  }
-  50%  { border-radius: 60% 40% 40% 60% / 40% 60% 60% 40%; transform: translate(-6%, 4%) rotate(-8deg) scale(0.92); }
-  75%  { border-radius: 50% 60% 55% 45% / 55% 45% 50% 60%; transform: translate(3%, 7%)  rotate(5deg)  scale(1.05); }
-  100% { border-radius: 45% 55% 60% 40% / 60% 50% 40% 55%; transform: translate(-4%, -4%) rotate(-4deg) scale(1.02); }
-}
-
-@keyframes blob-morph-4 {
-  0%   { border-radius: 60% 40% 50% 50% / 50% 60% 40% 55%; transform: translate(0, 0)    scale(1);    }
-  33%  { border-radius: 45% 55% 60% 40% / 60% 40% 55% 45%; transform: translate(8%, -4%)  scale(1.06); }
-  66%  { border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%; transform: translate(-3%, -7%) scale(0.95); }
-  100% { border-radius: 40% 60% 55% 45% / 55% 40% 60% 45%; transform: translate(5%, 6%)   scale(1.08); }
-}
-
-@keyframes blob-morph-5 {
-  0%   { border-radius: 50% 60% 45% 55% / 55% 45% 60% 40%; transform: translate(0, 0)    scale(1);    }
-  40%  { border-radius: 65% 35% 55% 45% / 45% 65% 40% 55%; transform: translate(-6%, 5%) scale(1.09); }
-  80%  { border-radius: 40% 60% 65% 35% / 60% 40% 50% 50%; transform: translate(4%, -6%)  scale(0.93); }
-  100% { border-radius: 55% 45% 50% 50% / 40% 55% 60% 45%; transform: translate(-3%, 3%)  scale(1.04); }
-}
-
-@keyframes blob-morph-6 {
-  0%   { border-radius: 55% 45% 60% 40% / 60% 55% 40% 50%; transform: translateX(-50%) translate(0, 0)    scale(1);    }
-  50%  { border-radius: 40% 60% 45% 55% / 45% 40% 60% 55%; transform: translateX(-50%) translate(5%, -8%) scale(1.12); }
-  100% { border-radius: 60% 40% 55% 45% / 55% 60% 45% 40%; transform: translateX(-50%) translate(-5%, 6%)  scale(0.9);  }
-}
-
-/* ============================================
    ACCESSIBILITY
    ============================================ */
 
@@ -421,7 +385,21 @@
     transform: none !important;
   }
 
-  .float-slow {
+  .float-slow,
+  .aurora-ribbon {
     animation: none !important;
+  }
+
+  .page-loader {
+    animation: none !important;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .about-card,
+  .pillar-item,
+  .activity-card,
+  .contact-info-panel {
+    transform: none !important;
   }
 }

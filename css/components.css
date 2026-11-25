@@ -51,7 +51,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #020810;
+  color: #101c25;
   font-weight: 800;
   font-size: 0.95rem;
   box-shadow: 0 0 16px var(--accent-glow);
@@ -84,7 +84,7 @@
     align-items: center;
     gap: 0.2rem;
     list-style: none;
-    background: rgba(10, 15, 29, 0.75);
+    background: rgba(16, 28, 37, 0.75);
     padding: 0.25rem 0.45rem;
     border-radius: 9999px;
     border: 1px solid var(--border-card);
@@ -222,7 +222,7 @@
     left: 0;
     width: 100%;
     height: calc(100vh - 4.5rem);
-    background: rgba(8, 11, 19, 0.96);
+    background: rgba(16, 28, 37, 0.96);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
@@ -283,12 +283,12 @@
 
 .btn-primary {
   background: var(--text-primary);
-  color: #020810;
+  color: #101c25;
   box-shadow: 0 4px 18px rgba(255, 255, 255, 0.12);
 }
 
 .btn-primary:hover {
-  background: #ffffff;
+  background: #e1eaeb;
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25), 0 0 25px var(--accent-glow);
 }
@@ -354,7 +354,7 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0.35rem 0.85rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(32, 55, 70, 0.8);
   border: 1px solid var(--border-subtle);
   border-radius: 9999px;
   font-size: 0.8125rem;
@@ -402,19 +402,19 @@
 }
 
 .badge-success {
-  background: rgba(52, 211, 153, 0.12);
+  background: rgba(163, 187, 196, 0.12);
   color: var(--success);
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  border: 1px solid rgba(163, 187, 196, 0.3);
 }
 
 .badge-warning {
-  background: rgba(251, 191, 36, 0.12);
+  background: rgba(99, 137, 154, 0.16);
   color: var(--warning);
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  border: 1px solid rgba(99, 137, 154, 0.4);
 }
 
 .badge-neutral {
-  background: rgba(148, 163, 184, 0.12);
+  background: rgba(163, 187, 196, 0.12);
   color: var(--text-muted);
   border: 1px solid var(--border-subtle);
 }
@@ -436,23 +436,6 @@
   padding-top: 6rem;
   padding-bottom: 4rem;
   overflow: hidden;
-}
-
-.hero-canvas-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-  z-index: 0;
-  opacity: 0.85;
-}
-
-#hero-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .hero-grid {
@@ -571,9 +554,9 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
-.terminal-dot:nth-child(1) { background: #ef4444; }
-.terminal-dot:nth-child(2) { background: #f59e0b; }
-.terminal-dot:nth-child(3) { background: #10b981; }
+.terminal-dot:nth-child(1) { background: #35586a; }
+.terminal-dot:nth-child(2) { background: #63899a; }
+.terminal-dot:nth-child(3) { background: #a3bbc4; }
 
 .terminal-title {
   font-family: var(--font-mono);
@@ -589,8 +572,8 @@
 }
 
 .code-keyword { color: var(--accent); }
-.code-fn { color: #38bdf8; }
-.code-string { color: #34d399; }
+.code-fn { color: #63899a; }
+.code-string { color: #a3bbc4; }
 .code-comment { color: var(--text-muted); font-style: italic; }
 
 .terminal-stats {
@@ -643,14 +626,14 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-card);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(56, 189, 248, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(99, 137, 154, 0.12);
   background: var(--bg-surface);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
 .hero-profile-card:hover .profile-photo-frame {
   transform: translateY(-4px) scale(1.015);
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55), 0 0 32px rgba(56, 189, 248, 0.22);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55), 0 0 32px rgba(99, 137, 154, 0.22);
 }
 
 .profile-photo {
@@ -669,7 +652,7 @@
 .profile-photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 65%, rgba(5, 7, 13, 0.72) 100%);
+  background: linear-gradient(180deg, transparent 65%, rgba(16, 28, 37, 0.72) 100%);
   pointer-events: none;
 }
 
@@ -680,7 +663,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(10, 14, 23, 0.85);
+  background: rgba(16, 28, 37, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -688,7 +671,7 @@
   padding: 0.3rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #f1f5f9;
+  color: var(--text-primary);
   letter-spacing: 0.01em;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -942,19 +925,19 @@
 }
 
 .skill-tag-learning {
-  background: rgba(251, 191, 36, 0.1);
-  color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.25);
+  background: rgba(99, 137, 154, 0.12);
+  color: #a3bbc4;
+  border: 1px solid rgba(99, 137, 154, 0.3);
 }
 
 .skill-tag-exploring {
-  background: rgba(245, 158, 11, 0.1);
-  color: #fcd34d;
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: rgba(53, 88, 106, 0.2);
+  color: #a3bbc4;
+  border: 1px solid rgba(99, 137, 154, 0.3);
 }
 
 .skill-tag-tool {
-  background: rgba(148, 163, 184, 0.08);
+  background: rgba(163, 187, 196, 0.08);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
 }
@@ -993,7 +976,7 @@
 
 .project-media {
   height: 180px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 14, 23, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(32, 55, 70, 0.9) 0%, rgba(16, 28, 37, 0.95) 100%);
   position: relative;
   display: flex;
   align-items: center;
@@ -1115,7 +1098,7 @@
   left: 9px;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, var(--accent) 0%, rgba(14, 165, 233, 0.35) 60%, transparent 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(99, 137, 154, 0.35) 60%, transparent 100%);
 }
 
 .timeline-item {
@@ -1387,7 +1370,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(4, 6, 12, 0.82);
+  background: rgba(16, 28, 37, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   display: flex;
@@ -1498,8 +1481,8 @@
 }
 
 .modal-callout {
-  background: rgba(251, 191, 36, 0.08);
-  border: 1px solid rgba(251, 191, 36, 0.25);
+  background: rgba(99, 137, 154, 0.08);
+  border: 1px solid rgba(99, 137, 154, 0.25);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1.75rem;
@@ -1515,7 +1498,7 @@
 
 .callout-text {
   font-size: 0.8125rem;
-  color: #fde68a;
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
@@ -1531,7 +1514,7 @@
 
 /* Contact Guide Modal Content */
 .guide-instruction-box {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(32, 55, 70, 0.6);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 1.25rem;
@@ -1556,7 +1539,7 @@
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%) translateY(30px);
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(32, 55, 70, 0.95);
   border: 1px solid var(--border-hover);
   color: var(--text-primary);
   padding: 0.75rem 1.5rem;
@@ -1582,7 +1565,7 @@
   right: 2rem;
   width: 2.75rem;
   height: 2.75rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(32, 55, 70, 0.8);
   border: 1px solid var(--border-subtle);
   border-radius: 50%;
   display: flex;
@@ -1618,7 +1601,7 @@
   padding-top: 3.5rem;
   padding-bottom: 3rem;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(5, 7, 13, 0.8);
+  background: rgba(16, 28, 37, 0.8);
   position: relative;
   z-index: 10;
 }
@@ -1893,7 +1876,7 @@
 
 .education-card.featured-edu {
   border-color: var(--border-hover);
-  background: linear-gradient(180deg, rgba(19, 28, 48, 0.85) 0%, rgba(10, 14, 23, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(32, 55, 70, 0.85) 0%, rgba(16, 28, 37, 0.75) 100%);
 }
 
 .edu-top-row {
@@ -2011,7 +1994,7 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(245, 158, 11, 0.18) 100%);
+  background: linear-gradient(135deg, rgba(53, 88, 106, 0.22) 0%, rgba(163, 187, 196, 0.14) 100%);
   border: 1px solid var(--border-hover);
   display: flex;
   align-items: center;

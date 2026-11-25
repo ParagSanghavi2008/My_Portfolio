@@ -7,6 +7,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
+  const pageLoader = document.getElementById('page-loader');
+  if (pageLoader) {
+    window.addEventListener('load', () => {
+      pageLoader.setAttribute('aria-hidden', 'true');
+      pageLoader.classList.add('is-hidden');
+    }, { once: true });
+  }
+
   // 1. Theme & Accent State
   const savedAccent = localStorage.getItem('parag_accent') || 'blue';
   applyAccent(savedAccent);
@@ -15,27 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (accentBtn) {
     accentBtn.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-accent') || 'blue';
-      const next = current === 'blue' ? 'violet' : (current === 'violet' ? 'emerald' : 'blue');
+      const next = current === 'blue' ? 'steel' : (current === 'steel' ? 'ice' : 'blue');
       applyAccent(next);
       localStorage.setItem('parag_accent', next);
     });
   }
 
   function applyAccent(accent) {
+    if (accent === 'violet') accent = 'steel';
+    if (accent === 'emerald') accent = 'ice';
+    if (!['blue', 'steel', 'ice'].includes(accent)) accent = 'blue';
+
     document.documentElement.setAttribute('data-accent', accent);
     const label = document.getElementById('accent-label');
     if (label) {
       label.textContent = accent.charAt(0).toUpperCase() + accent.slice(1);
-    }
-    // Update canvas color palette if available
-    if (window.updateCanvasColors) {
-      if (accent === 'violet') {
-        window.updateCanvasColors({ r: 168, g: 85, b: 247 }, { r: 236, g: 72, b: 153 });
-      } else if (accent === 'emerald') {
-        window.updateCanvasColors({ r: 52, g: 211, b: 153 }, { r: 56, g: 189, b: 248 });
-      } else {
-        window.updateCanvasColors({ r: 56, g: 189, b: 248 }, { r: 168, g: 85, b: 247 });
-      }
     }
   }
 
@@ -66,6 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Header Scroll Effect & Back-to-Top Button
   const header = document.getElementById('main-header');
   const backToTopBtn = document.getElementById('back-to-top');
+  const scrollProgress = document.querySelector('.scroll-progress span');
+
+  function updateScrollProgress() {
+    if (!scrollProgress) return;
+
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? Math.min(window.scrollY / scrollableHeight, 1) : 0;
+    scrollProgress.style.transform = `scaleX(${progress})`;
+  }
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
@@ -85,7 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.classList.remove('visible');
       }
     }
+
+    updateScrollProgress();
   }, { passive: true });
+  updateScrollProgress();
 
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
@@ -386,4 +400,42 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  const cardSelector = [
+    '.about-card',
+    '.pillar-item',
+    '.skill-card',
+    '.project-card',
+    '.pr-card',
+    '.timeline-content-card',
+    '.education-card',
+    '.worldquant-card',
+    '.to-achieve-card',
+    '.activity-card',
+    '.contact-info-panel',
+    '.contact-form-card',
+    '.os-spotlight-card'
+  ].join(', ');
+
+  document.addEventListener('click', (event) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!(event.target instanceof Element)) return;
+
+    const card = event.target.closest(cardSelector);
+    if (!card || typeof card.animate !== 'function') return;
+
+    const restingTransform = getComputedStyle(card).transform;
+    const pressedTransform = restingTransform === 'none'
+      ? 'scale(0.985)'
+      : `${restingTransform} scale(0.985)`;
+
+    card.animate([
+      { transform: restingTransform },
+      { transform: pressedTransform, offset: 0.45 },
+      { transform: restingTransform }
+    ], {
+      duration: 240,
+      easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+    });
+  });
 });
