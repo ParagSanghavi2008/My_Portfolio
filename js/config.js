@@ -22,7 +22,7 @@ window.PORTFOLIO_CONFIG = {
     ],
     email: "paragsanghavi.101@gmail.com",
     github: "https://github.com/ParagSanghavi2008",
-    linkedin: "https://www.linkedin.com/in/paragsanghavi", // Placeholder: update with your LinkedIn handle
+    linkedin: "https://www.linkedin.com/in/parag-sanghavi-685700432/",
     photo: "assets/images/parag.jpg",
     resumeUrl: "" // Leave empty if not yet available, or add your Google Drive/PDF link
   },
@@ -149,5 +149,180 @@ window.PORTFOLIO_CONFIG = {
       status: "Active Pursuit",
       description: "Engaging deeply with core undergraduate coursework: Discrete Mathematics, Engineering Physics, and Computation Fundamentals."
     }
-  ]
+  ],
+
+  openSource: {
+    project: "SnAI (S-AI-Projects)",
+    repository: "https://github.com/S-AI-Projects/Python-programming-exercises",
+    repoName: "Python-programming-exercises",
+    tagline: "100+ Python challenging programming exercises",
+    description: "Actively contributing algorithmic proofs, mutation analysis, regression protection, and invariant verification across community Python challenges.",
+    pullRequests: [
+      {
+        number: 89,
+        title: "R28-T020: Protect example against regression: Python question 69",
+        category: "Mutation Analysis & Testing",
+        summary: "Protected generator solution against regression using mutation analysis. Verified LCM(5, 7) = 35 logic against 'and' vs 'or' mutation, added boundary test (n=0), and introduced automated validation.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/89",
+        tags: ["Python", "Mutation Testing", "Regression Protection", "LCM 35"],
+        status: "PR Raised"
+      },
+      {
+        number: 88,
+        title: "R28-T019: Explain resource behavior: Python question 10",
+        category: "Resource Management",
+        summary: "Documented resource behavior and memory management patterns in Python sequences, clarifying iterator lifecycles.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/88",
+        tags: ["Python", "Memory", "Iterators", "Documentation"],
+        status: "PR Raised"
+      },
+      {
+        number: 87,
+        title: "R28-T018: Document failure or limitation: Python question 67",
+        category: "Error Boundaries",
+        summary: "Analyzed failure modes, edge condition overflows, and boundary limits for recursive execution.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/87",
+        tags: ["Python", "Edge Cases", "Recursion Limits"],
+        status: "PR Raised"
+      },
+      {
+        number: 86,
+        title: "R28-T017: Derive result step by step: Python question 2",
+        category: "Mathematical Proofs",
+        summary: "Step-by-step mathematical proof and algorithmic derivation of factorial computation with complexity analysis.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/86",
+        tags: ["Python", "Mathematical Trace", "Factorials"],
+        status: "PR Raised"
+      },
+      {
+        number: 85,
+        title: "R28-T016: Clarify implementation: Python question 92",
+        category: "Clean Code",
+        summary: "Enhanced readability, typing hints, and modular decomposition adhering to clean Python 3 standards.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/85",
+        tags: ["Python 3", "Type Hints", "Modularity"],
+        status: "PR Raised"
+      },
+      {
+        number: 84,
+        title: "R28-T015: Remove hidden state from example: Python question 65",
+        category: "Functional Purity",
+        summary: "Eliminated implicit global state and side effects, ensuring reproducible pure function execution.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/84",
+        tags: ["Python", "Pure Functions", "State Isolation"],
+        status: "PR Raised"
+      },
+      {
+        number: 83,
+        title: "R28-T014: Explain an invariant: Python question 38",
+        category: "Algorithm Invariants",
+        summary: "Detailed formal loop invariants and state guarantees throughout iterative list transformations.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/83",
+        tags: ["Python", "Invariants", "Verification"],
+        status: "PR Raised"
+      },
+      {
+        number: 82,
+        title: "R28-T013: Compare two methods: Python question 17",
+        category: "Complexity & Benchmarks",
+        summary: "Comprehensive comparison between iterative and functional paradigms measuring time complexity and readability tradeoffs.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/82",
+        tags: ["Python", "Benchmarking", "Time Complexity"],
+        status: "PR Raised"
+      },
+      {
+        number: 81,
+        title: "R28-T012: Explain the boundary: Python question 18",
+        category: "Boundary Verification",
+        summary: "Rigorous verification of boundary conditions, zero-length inputs, and off-by-one edge prevention.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/81",
+        tags: ["Python", "Boundary Testing", "Edge Case Guard"],
+        status: "PR Raised"
+      },
+      {
+        number: 77,
+        title: "R28-T011: Make example executable: Python question 32",
+        category: "Automated Harness",
+        summary: "Introduced self-contained executable harness with assertion checks for question 32 solution verification.",
+        url: "https://github.com/S-AI-Projects/Python-programming-exercises/pull/77",
+        tags: ["Python", "Test Harness", "Assertions"],
+        status: "PR Raised"
+      }
+    ]
+  },
+
+  education: [
+    {
+      institution: "Newton School of Technology, ADYPU, Pune",
+      degree: "B.Tech in Computer Science Engineering (AI & ML)",
+      period: "2024 – Present",
+      status: "Currently Pursuing (1st Year)",
+      location: "Pune, Maharashtra",
+      highlights: [
+        "Specialization in Artificial Intelligence and Machine Learning",
+        "Foundational coursework in Discrete Mathematics, Computational Logic, and Data Structures",
+        "Exploring neural network architectures, audio spoofing defense, and quantitative modeling",
+        "Consistent daily practice: algorithmic problem solving, active GitHub repositories, and open source"
+      ],
+      badge: "Current Degree",
+      badgeType: "success"
+    },
+    {
+      institution: "Sanjivani Junior College, Kopargaon",
+      degree: "Higher Secondary (11th & 12th Grade) — Science",
+      period: "2022 – 2024",
+      status: "Completed",
+      location: "Kopargaon, Maharashtra",
+      highlights: [
+        "Core science curriculum: Advanced Physics, Chemistry, and Mathematics (PCM)",
+        "Intensive preparation for JEE (Joint Entrance Examination)",
+        "Built disciplined analytical problem-solving intuition and strong quantitative foundations"
+      ],
+      badge: "JEE Preparation",
+      badgeType: "accent"
+    },
+    {
+      institution: "Vidya International School, Yeola",
+      degree: "Secondary School Education (Till 10th Grade)",
+      period: "Till 2022",
+      status: "Completed",
+      location: "Yeola, Maharashtra",
+      highlights: [
+        "Foundational schooling with distinction across science, mathematics, and computer basics",
+        "Active involvement in academic competitions, logic puzzles, and science exhibitions",
+        "Developed early curiosity for computer science, software development, and algorithmic thinking"
+      ],
+      badge: "Schooling Foundation",
+      badgeType: "neutral"
+    }
+  ],
+
+  achievements: {
+    role: "Consultant & Researcher",
+    organization: "WorldQuant Brain",
+    badge: "Quant Research",
+    badgeType: "accent",
+    period: "Active Contributor",
+    tagline: "Quantitative financial modeling, alpha formula development, and market signal research.",
+    description: "Working as a Consultant and Quantitative Researcher on the WorldQuant Brain platform, formulating predictive mathematical and statistical expressions ('Alphas') across financial datasets.",
+    highlights: [
+      "Alpha Formulation: Constructing mathematical expressions leveraging price-volume dynamics and fundamental factors to isolate market signals.",
+      "Statistical Backtesting: Validating Sharpe ratio, returns, turnover, and drawdown metrics across diverse market universes.",
+      "Quantitative Research: Developing systematic hypotheses, factor modeling, and mitigating multi-collinearity in alpha sets."
+    ],
+    toAchieve: [
+      {
+        title: "Master Advanced Problem-Solving",
+        category: "Algorithmic Excellence",
+        icon: "brain",
+        description: "Achieve deep mastery in algorithmic logic, graph theory, dynamic programming, and competitive problem-solving across LeetCode, Codeforces, and HackerRank."
+      },
+      {
+        title: "Start or Work in a High-Impact Startup",
+        category: "Venture & Innovation",
+        icon: "rocket",
+        description: "Co-found or take on pivotal early-stage engineering roles in a technology startup — architecting real-world AI and scalable software systems from 0 to 1."
+      }
+    ]
+  }
 };

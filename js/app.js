@@ -352,4 +352,38 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+
+  // 10. Motion Primitives: Interactive 3D Card Tilt & Glare Effect
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  const prefersReducedMotionCheck = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotionCheck && tiltCards.length > 0) {
+    tiltCards.forEach(card => {
+      // Inject specular glare element if not present
+      if (!card.querySelector('.card-glare')) {
+        const glare = document.createElement('div');
+        glare.className = 'card-glare';
+        card.appendChild(glare);
+      }
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+        card.style.setProperty('--mouse-x', `${(x / rect.width * 100).toFixed(1)}%`);
+        card.style.setProperty('--mouse-y', `${(y / rect.height * 100).toFixed(1)}%`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+  }
 });

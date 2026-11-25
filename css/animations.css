@@ -67,6 +67,248 @@
   animation: border-shimmer 6s ease infinite;
 }
 
+/* ==========================================================================
+   MOTION PRIMITIVES & 3D ANIMATION EFFECTS
+   ========================================================================== */
+
+/* 1. 3D Perspective Card Tilt Container */
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
+}
+
+.tilt-card > * {
+  transform: translateZ(12px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Specular Glare Overlay */
+.card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.tilt-card:hover .card-glare {
+  opacity: 1;
+}
+
+/* 2. Border Beam: Rotating Gradient Light Tracer */
+.border-beam-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.border-beam-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg) at 50% 50%,
+    transparent 0%,
+    var(--accent) 25%,
+    var(--accent-light) 30%,
+    transparent 40%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: border-beam-spin 8s linear infinite;
+  z-index: 3;
+}
+
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-beam-spin {
+  0% {
+    --beam-angle: 0deg;
+  }
+  100% {
+    --beam-angle: 360deg;
+  }
+}
+
+/* 3. 3D Cyber Horizon / Grid Animation */
+.cyber-grid-3d {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 480px;
+  perspective: 450px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.28;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.cyber-grid-plane {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.25) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: rotateX(72deg) translateY(-80px);
+  transform-origin: 50% 100%;
+  animation: cyber-grid-scroll 12s linear infinite;
+}
+
+@keyframes cyber-grid-scroll {
+  0% {
+    transform: rotateX(72deg) translateY(0);
+  }
+  100% {
+    transform: rotateX(72deg) translateY(48px);
+  }
+}
+
+/* 4. Ambient 3D Nebula Aurora Spheres */
+.nebula-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.nebula-sphere-1 {
+  width: 500px;
+  height: 500px;
+  top: 15%;
+  left: -100px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(129, 140, 248, 0.15) 50%, transparent 70%);
+  animation: float-orb-1 18s ease-in-out infinite alternate;
+}
+
+.nebula-sphere-2 {
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  right: -150px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 70%);
+  animation: float-orb-2 22s ease-in-out infinite alternate;
+}
+
+.nebula-sphere-3 {
+  width: 550px;
+  height: 550px;
+  bottom: 10%;
+  left: 20%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(52, 211, 153, 0.15) 50%, transparent 70%);
+  animation: float-orb-3 25s ease-in-out infinite alternate;
+}
+
+@keyframes float-orb-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(80px, 60px, 40px) scale(1.15); }
+  100% { transform: translate3d(-40px, 120px, -20px) scale(0.95); }
+}
+
+@keyframes float-orb-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-90px, -70px, 50px) scale(1.2); }
+  100% { transform: translate3d(50px, -110px, -30px) scale(0.9); }
+}
+
+@keyframes float-orb-3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, -80px, 30px) scale(1.1); }
+  100% { transform: translate3d(-70px, 50px, -40px) scale(1.05); }
+}
+
+/* 5. Magnetic CTA Button Sheen */
+.btn-motion-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-motion-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn-motion-sheen:hover::after {
+  animation: btn-sheen-sweep 0.75s ease forwards;
+}
+
+@keyframes btn-sheen-sweep {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* 6. Pulse Status Radar */
+.radar-pulse {
+  position: relative;
+}
+
+.radar-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid var(--accent);
+  opacity: 0.8;
+  animation: radar-wave 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes radar-wave {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
 /* Accessibility: Respect Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
