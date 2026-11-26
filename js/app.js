@@ -56,20 +56,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const pageLoader = document.getElementById('page-loader');
   if (pageLoader) {
-    window.addEventListener('load', () => {
+    const hidePageLoader = () => {
       pageLoader.setAttribute('aria-hidden', 'true');
       pageLoader.classList.add('is-hidden');
-    }, { once: true });
+    };
+    if (document.readyState === 'complete') {
+      window.requestAnimationFrame(hidePageLoader);
+    } else {
+      window.addEventListener('load', hidePageLoader, { once: true });
+    }
   }
 
-  // 1. Mobile Navigation Drawer
+  // 1. Door-based page navigation
   const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-menu .nav-link');
-
-  const navSections = Array.from(navLinks)
-    .map(link => document.getElementById(new URL(link.href, window.location.href).hash.slice(1)))
-    .filter(Boolean);
+  const returnDoor = document.getElementById('return-door');
+  const returnDoorTitle = returnDoor && returnDoor.querySelector('.return-door__title');
+  const doorGallery = document.getElementById('door-gallery');
+  const topicPages = Array.from(document.querySelectorAll('.topic-page'));
+  let doorNavigationTimeout;
+  let pageTransitionTimeout;
 
   function setActiveSection(sectionId) {
     navLinks.forEach(link => {
@@ -81,64 +87,141 @@ document.addEventListener('DOMContentLoaded', () => {
         link.removeAttribute('aria-current');
       }
     });
-  }
 
-  const initialSection = window.location.hash.slice(1);
-  setActiveSection(navSections.some(section => section.id === initialSection) ? initialSection : 'hero');
-
-  if ('IntersectionObserver' in window) {
-    const sectionObserver = new IntersectionObserver(entries => {
-      const visibleSections = entries.filter(entry => entry.isIntersecting);
-      if (!visibleSections.length) return;
-      const activeSection = visibleSections.reduce((closest, entry) => (
-        Math.abs(entry.boundingClientRect.top) < Math.abs(closest.boundingClientRect.top)
-          ? entry
-          : closest
-      ));
-      setActiveSection(activeSection.target.id);
-    }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
-
-    navSections.forEach(section => sectionObserver.observe(section));
-  }
-
-  if (navToggle && navMenu) {
-    function closeNavigation() {
-      navMenu.classList.remove('is-open');
-      navToggle.classList.remove('is-active');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.setAttribute('aria-label', 'Open navigation menu');
-      document.body.classList.remove('nav-lock');
+    if (returnDoor && returnDoorTitle) {
+      const activeLink = Array.from(navLinks).find(
+        link => new URL(link.href, window.location.href).hash === `#${sectionId}`
+      );
+      const isTopicPage = Boolean(activeLink && document.body.classList.contains('topic-page-open'));
+      returnDoorTitle.textContent = isTopicPage ? activeLink.textContent.trim() : '';
+      returnDoor.setAttribute('aria-label', isTopicPage
+        ? `Exit ${activeLink.textContent.trim()} and return home`
+        : 'Exit this page and return home');
+      returnDoor.setAttribute('aria-hidden', String(!isTopicPage));
+      returnDoor.tabIndex = isTopicPage ? 0 : -1;
+      returnDoor.classList.toggle('is-visible', isTopicPage);
     }
 
-    navToggle.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('is-open');
-      navToggle.classList.toggle('is-active', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-      document.body.classList.toggle('nav-lock', isOpen && window.matchMedia('(max-width: 867px)').matches);
-    });
+  }
 
+  function updatePageHash(sectionId, replace = false) {
+    const url = `${window.location.pathname}${window.location.search}#${sectionId}`;
+    if (replace) {
+      window.history.replaceState(null, '', url);
+    } else {
+      window.history.pushState(null, '', url);
+    }
+  }
+
+  function openTopicPage(sectionId, replaceHistory = false) {
+    const page = topicPages.find(topic => topic.id === sectionId);
+    if (!page) return false;
+
+    window.clearTimeout(pageTransitionTimeout);
+    topicPages.forEach(topic => topic.classList.remove('is-current', 'is-closing'));
     navLinks.forEach(link => {
-      link.addEventListener('click', closeNavigation);
+      const isCurrentDoor = new URL(link.href, window.location.href).hash === `#${sectionId}`;
+      link.classList.toggle('door-open', isCurrentDoor);
+      if (isCurrentDoor) link.classList.remove('door-opening');
     });
+    document.body.classList.add('topic-page-open');
+    page.classList.add('is-current');
+    setActiveSection(sectionId);
+    updatePageHash(sectionId, replaceHistory);
+    window.scrollTo(0, 0);
+    return true;
+  }
 
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
-        closeNavigation();
-        navToggle.focus();
-      }
-    });
+  function closeTopicPage(destination = 'hero', animate = true) {
+    window.clearTimeout(pageTransitionTimeout);
+    window.clearTimeout(doorNavigationTimeout);
+    navLinks.forEach(link => link.classList.remove('door-opening', 'door-open'));
 
-    document.addEventListener('click', event => {
-      if (
-        navMenu.classList.contains('is-open')
-        && event.target instanceof Node
-        && !navMenu.contains(event.target)
-        && !navToggle.contains(event.target)
-      ) {
-        closeNavigation();
+    const activePage = topicPages.find(topic => topic.classList.contains('is-current'));
+    const returnHome = () => {
+      if (activePage) activePage.classList.remove('is-current', 'is-closing');
+      document.body.classList.remove('topic-page-open');
+      if (returnDoor) returnDoor.disabled = false;
+      setActiveSection('hero');
+      updatePageHash(destination, true);
+
+      if (destination === 'door-gallery' && doorGallery) {
+        doorGallery.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
       }
+    };
+
+    if (!activePage || !animate) {
+      returnHome();
+      return;
+    }
+
+    activePage.classList.add('is-closing');
+    if (returnDoor) returnDoor.disabled = true;
+    pageTransitionTimeout = window.setTimeout(returnHome, 320);
+  }
+
+  function browsePages() {
+    if (document.body.classList.contains('topic-page-open')) {
+      closeTopicPage('door-gallery');
+    } else if (doorGallery) {
+      doorGallery.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
+  }
+
+  if (navToggle) navToggle.addEventListener('click', browsePages);
+  if (returnDoor) {
+    returnDoor.addEventListener('click', () => closeTopicPage('hero'));
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const sectionId = new URL(link.href, window.location.href).hash.slice(1);
+
+      if (sectionId === 'hero') {
+        closeTopicPage('hero');
+        return;
+      }
+
+      if (!topicPages.some(page => page.id === sectionId)) return;
+      window.clearTimeout(doorNavigationTimeout);
+      navLinks.forEach(item => item.classList.remove('door-opening', 'door-open'));
+      link.classList.add('door-opening');
+      doorNavigationTimeout = window.setTimeout(() => {
+        openTopicPage(sectionId);
+      }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650);
     });
+  });
+
+  const navBrand = document.querySelector('.nav-brand');
+  if (navBrand) {
+    navBrand.addEventListener('click', event => {
+      event.preventDefault();
+      closeTopicPage('hero');
+    });
+  }
+
+  window.addEventListener('popstate', () => {
+    const sectionId = window.location.hash.slice(1);
+    if (openTopicPage(sectionId, true)) return;
+    closeTopicPage(sectionId === 'door-gallery' ? 'door-gallery' : 'hero', false);
+  });
+
+  const initialSection = window.location.hash.slice(1);
+  if (!openTopicPage(initialSection, true)) {
+    setActiveSection('hero');
+    if (initialSection === 'door-gallery' && doorGallery) {
+      window.requestAnimationFrame(() => doorGallery.scrollIntoView());
+    }
   }
 
   // 3. Header Scroll Effect & Back-to-Top Button
@@ -343,15 +426,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   }
 
+  async function copyTextToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch (error) {
+        console.warn('Clipboard API could not copy the email; trying the compatibility method.', error);
+      }
+    }
+
+    const temporaryInput = document.createElement('textarea');
+    temporaryInput.value = text;
+    temporaryInput.setAttribute('readonly', '');
+    temporaryInput.style.position = 'fixed';
+    temporaryInput.style.opacity = '0';
+    document.body.appendChild(temporaryInput);
+    temporaryInput.select();
+    const copied = document.execCommand('copy');
+    temporaryInput.remove();
+    if (!copied) throw new Error('The browser did not allow copying to the clipboard.');
+  }
+
   copyEmailBtns.forEach(btn => {
+    const label = btn.querySelector('.social-door__label');
+    const initialLabel = label ? label.textContent : '';
+    let feedbackTimeout;
+
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const email = btn.getAttribute('data-email') || (window.PORTFOLIO_CONFIG && window.PORTFOLIO_CONFIG.personal.email) || 'paragsanghavi.101@gmail.com';
       try {
-        await navigator.clipboard.writeText(email);
-        showToast('✓ Email address copied to clipboard!');
-      } catch (err) {
-        showToast(`Email: ${email}`);
+        await copyTextToClipboard(email);
+        btn.classList.add('is-copied');
+        if (label) label.textContent = 'Email ID has been copied';
+        showToast('Email ID has been copied');
+        window.clearTimeout(feedbackTimeout);
+        feedbackTimeout = window.setTimeout(() => {
+          btn.classList.remove('is-copied');
+          if (label) label.textContent = initialLabel;
+        }, 2400);
+      } catch (error) {
+        console.error('Email address could not be copied.', error);
+        showToast('Could not copy the email address. Please try again.');
       }
     });
   });

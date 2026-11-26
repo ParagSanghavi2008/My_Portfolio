@@ -66,22 +66,6 @@
         <span class="brand-symbol" aria-hidden="true">P</span>
       </a>
 
-      <!-- Page Navigation Menu -->
-      <nav aria-label="Portfolio page navigation">
-        <ul class="nav-menu" id="nav-menu">
-          <li class="nav-item"><a href="#hero" class="nav-link active" aria-current="page">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-          <li class="nav-item"><a href="#opensource" class="nav-link">Open Source</a></li>
-          <li class="nav-item"><a href="#journey" class="nav-link">Journey</a></li>
-          <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
-          <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
-          <li class="nav-item"><a href="#activities" class="nav-link">Activities</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-
       <!-- Navigation Toggle -->
       <div class="nav-actions">
         <button type="button" class="theme-lamp" id="theme-lamp" aria-label="Pull lamp to change theme. Current theme: Deep Sapphire" aria-pressed="false">
@@ -93,7 +77,7 @@
             </svg>
           </span>
         </button>
-        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Browse portfolio pages" aria-controls="door-gallery">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -131,11 +115,11 @@
 
           <!-- Action CTA Cluster -->
           <div class="hero-cta-cluster">
-            <a href="#projects" class="btn btn-primary">
+            <a href="#door-gallery" class="btn btn-primary">
               <span>Explore My Projects</span>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
             </a>
-            <a href="#contact" class="btn btn-secondary">
+            <a href="#door-gallery" class="btn btn-secondary">
               <span>Contact Me</span>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </a>
@@ -214,7 +198,32 @@
       </div>
     </section>
 
-<section class="section" id="about" aria-label="About Parag Rajeshkumar Sanghavi">
+    <section class="door-gallery section" id="door-gallery" aria-labelledby="door-gallery-title">
+      <div class="container">
+        <div class="section-header text-center door-gallery__header">
+          <span class="section-tag">The Portfolio Collection</span>
+          <h2 class="section-title" id="door-gallery-title">Choose a destination</h2>
+          <p class="section-description">Step through a door to explore one chapter at a time.</p>
+        </div>
+
+        <nav aria-label="Portfolio pages">
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item"><a href="#hero" class="nav-link active" aria-current="page"><span class="door-title">Home</span></a></li>
+            <li class="nav-item"><a href="#about" class="nav-link"><span class="door-title">About</span></a></li>
+            <li class="nav-item"><a href="#skills" class="nav-link"><span class="door-title">Skills</span></a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link"><span class="door-title">Projects</span></a></li>
+            <li class="nav-item"><a href="#opensource" class="nav-link"><span class="door-title">Open Source</span></a></li>
+            <li class="nav-item"><a href="#journey" class="nav-link"><span class="door-title">Journey</span></a></li>
+            <li class="nav-item"><a href="#education" class="nav-link"><span class="door-title">Education</span></a></li>
+            <li class="nav-item"><a href="#achievements" class="nav-link"><span class="door-title">Achievements</span></a></li>
+            <li class="nav-item"><a href="#activities" class="nav-link"><span class="door-title">Activities</span></a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link"><span class="door-title">Contact</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+<section class="section topic-page" id="about" aria-label="About Parag Rajeshkumar Sanghavi">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -295,7 +304,7 @@
       </div>
     </section>
 
-<section class="section" id="skills" aria-label="Technical Skills and Competencies">
+<section class="section topic-page" id="skills" aria-label="Technical Skills and Competencies">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -401,7 +410,7 @@
       </div>
     </section>
 
-<section class="section" id="projects" aria-label="Featured Projects Showcase">
+<section class="section topic-page" id="projects" aria-label="Featured Projects Showcase">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -504,7 +513,7 @@
       </div>
     </section>
 
-<section class="section" id="opensource" aria-label="Open Source Contributions">
+<section class="section topic-page" id="opensource" aria-label="Open Source Contributions">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -839,7 +848,7 @@
       </div>
     </section>
 
-<section class="section" id="journey" aria-label="Learning Journey and Timeline">
+<section class="section topic-page" id="journey" aria-label="Learning Journey and Timeline">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -932,7 +941,7 @@
       </div>
     </section>
 
-<section class="section" id="education" aria-label="Educational Background and Milestones">
+<section class="section topic-page" id="education" aria-label="Educational Background and Milestones">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -1050,7 +1059,7 @@
       </div>
     </section>
 
-<section class="section" id="achievements" aria-label="Achievements and Goals">
+<section class="section topic-page" id="achievements" aria-label="Achievements and Goals">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -1156,7 +1165,7 @@
       </div>
     </section>
 
-<section class="section" id="activities" aria-label="Achievements and Activities">
+<section class="section topic-page" id="activities" aria-label="Achievements and Activities">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -1218,7 +1227,7 @@
       </div>
     </section>
 
-<section class="section" id="contact" aria-label="Contact Information and Inquiries">
+<section class="section topic-page" id="contact" aria-label="Contact Information and Inquiries">
       <div class="container">
 
         <div class="section-header reveal-on-scroll">
@@ -1339,9 +1348,21 @@
       </div>
 
       <div class="footer-right">
-        <a href="#main-content" class="nav-link">Back to Top</a>
-        <a href="https://github.com/ParagSanghavi2008" target="_blank" rel="noopener noreferrer" class="social-link-item">GitHub</a>
-        <a href="https://www.linkedin.com/in/parag-sanghavi-685700432/" target="_blank" rel="noopener noreferrer" class="social-link-item">LinkedIn</a>
+        <div class="footer-social-doors" aria-label="Social profiles and email">
+          <a class="social-door" href="https://github.com/ParagSanghavi2008" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
+            <span class="social-door__label">GitHub</span>
+            <span class="social-door__hint">Open profile</span>
+          </a>
+          <a class="social-door" href="https://www.linkedin.com/in/parag-sanghavi-685700432/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+            <span class="social-door__label">LinkedIn</span>
+            <span class="social-door__hint">Open profile</span>
+          </a>
+          <button type="button" class="social-door btn-copy-email" data-email="paragsanghavi.101@gmail.com" title="Copy email address to clipboard" aria-label="Copy email address">
+            <span class="social-door__label">Email</span>
+            <span class="social-door__hint">Copy address</span>
+          </button>
+        </div>
+        <a href="#main-content" class="footer-top-link">Back to Top</a>
       </div>
 
     </div>
@@ -1407,6 +1428,13 @@
   <!-- Back to Top Floating Button -->
   <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top of page" title="Scroll back to top">
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <button type="button" class="return-door" id="return-door" aria-label="Exit this page and return home" aria-hidden="true" tabindex="-1">
+    <span class="return-door__leaf return-door__leaf--left" aria-hidden="true"></span>
+    <span class="return-door__leaf return-door__leaf--right" aria-hidden="true"></span>
+    <span class="return-door__title"></span>
+    <span class="return-door__hint">Exit page</span>
   </button>
 
   <!-- JavaScript Files -->

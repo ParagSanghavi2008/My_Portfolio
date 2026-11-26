@@ -157,10 +157,6 @@ body {
   color: #182746;
 }
 
-[data-theme="champagne"] .nav-menu {
-  background: var(--bg-glass);
-}
-
 .scroll-progress {
   position: fixed;
   top: 0;
