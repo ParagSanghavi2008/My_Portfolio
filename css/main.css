@@ -1,42 +1,45 @@
 /**
  * Parag Rajeshkumar Sanghavi - Design System & Main Stylesheet
- * High-end dark theme inspired by Vercel, Linear, and modern developer aesthetics.
+ * A royal, editorial palette in sapphire and champagne.
  */
 
 :root {
-  /* Cool blue-gray palette */
-  --bg-deep: #101c25;
-  --bg-surface: #203746;
-  --bg-card: rgba(32, 55, 70, 0.72);
-  --bg-card-hover: rgba(53, 88, 106, 0.72);
-  --bg-glass: rgba(16, 28, 37, 0.88);
-  --bg-input: rgba(32, 55, 70, 0.68);
+  color-scheme: dark;
+  /* Deep sapphire and champagne beige */
+  --bg-deep: #081a3a;
+  --bg-surface: #10264b;
+  --bg-card: rgba(22, 43, 78, 0.72);
+  --bg-card-hover: rgba(31, 56, 95, 0.86);
+  --bg-glass: rgba(8, 26, 58, 0.94);
+  --bg-input: rgba(8, 26, 58, 0.8);
 
   /* Typography Colors */
-  --text-primary: #e1eaeb;
-  --text-secondary: #a3bbc4;
-  --text-muted: #63899a;
-  --text-faint: #63899a;
+  --text-primary: #f7f3eb;
+  --text-secondary: #d3d5dc;
+  --text-muted: #d7bd92;
+  --text-faint: #d7bd92;
 
   /* Borders & Lines */
-  --border-subtle: rgba(163, 187, 196, 0.16);
-  --border-card: rgba(163, 187, 196, 0.12);
-  --border-hover: rgba(99, 137, 154, 0.5);
-  --border-active: rgba(163, 187, 196, 0.7);
+  --border-subtle: rgba(215, 189, 146, 0.2);
+  --border-card: rgba(215, 189, 146, 0.16);
+  --border-hover: rgba(215, 189, 146, 0.52);
+  --border-active: rgba(215, 189, 146, 0.76);
 
-  /* Default Accent: Cyan → Gold gradient */
-  --accent: #63899a;
-  --accent-light: #a3bbc4;
-  --accent-dark: #35586a;
-  --accent-glow: rgba(99, 137, 154, 0.24);
-  --accent-gradient: linear-gradient(135deg, #63899a 0%, #a3bbc4 100%);
-  --accent-soft: rgba(99, 137, 154, 0.16);
+  --accent: #d7bd92;
+  --accent-light: #e8d6b3;
+  --accent-dark: #081a3a;
+  --accent-glow: rgba(215, 189, 146, 0.22);
+  --accent-gradient: linear-gradient(135deg, #c3a36d 0%, #f0dfbd 100%);
+  --accent-soft: rgba(215, 189, 146, 0.12);
+  --wallpaper-sapphire: rgba(52, 89, 153, 0.3);
+  --wallpaper-champagne: rgba(215, 189, 146, 0.17);
+  --wallpaper-ribbon: rgba(75, 111, 172, 0.12);
 
   /* Status Colors */
-  --success: #a3bbc4;
-  --success-glow: rgba(163, 187, 196, 0.2);
-  --warning: #63899a;
-  --warning-glow: rgba(99, 137, 154, 0.2);
+  --success: #a9c5a5;
+  --success-glow: rgba(169, 197, 165, 0.2);
+  --warning: #d7bd92;
+  --warning-glow: rgba(215, 189, 146, 0.2);
 
   /* Fonts */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -54,28 +57,37 @@
   --transition-fast: 0.15s ease;
 }
 
-/* Deeper steel-blue accent */
-[data-accent="steel"] {
-  --accent: #63899a;
-  --accent-light: #a3bbc4;
-  --accent-dark: #203746;
-  --accent-glow: rgba(53, 88, 106, 0.28);
-  --accent-gradient: linear-gradient(135deg, #63899a 0%, #a3bbc4 100%);
-  --accent-soft: rgba(53, 88, 106, 0.22);
-  --border-hover: rgba(99, 137, 154, 0.55);
-  --border-active: rgba(163, 187, 196, 0.72);
-}
-
-/* Light ice-blue accent */
-[data-accent="ice"] {
-  --accent: #a3bbc4;
-  --accent-light: #e1eaeb;
-  --accent-dark: #63899a;
-  --accent-glow: rgba(163, 187, 196, 0.2);
-  --accent-gradient: linear-gradient(135deg, #63899a 0%, #a3bbc4 100%);
-  --accent-soft: rgba(163, 187, 196, 0.13);
-  --border-hover: rgba(163, 187, 196, 0.48);
-  --border-active: rgba(225, 234, 235, 0.72);
+[data-theme="champagne"] {
+  color-scheme: light;
+  --bg-deep: #fbf9f4;
+  --bg-surface: #fffdf9;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-card-hover: rgba(255, 255, 255, 0.96);
+  --bg-glass: rgba(251, 249, 244, 0.94);
+  --bg-input: rgba(255, 255, 255, 0.88);
+  --text-primary: #182746;
+  --text-secondary: #4a5364;
+  --text-muted: #806b4e;
+  --text-faint: #806b4e;
+  --border-subtle: rgba(151, 123, 80, 0.24);
+  --border-card: rgba(151, 123, 80, 0.2);
+  --border-hover: rgba(151, 123, 80, 0.48);
+  --border-active: rgba(151, 123, 80, 0.68);
+  --accent: #96794e;
+  --accent-light: #b69a6b;
+  --accent-dark: #fbf9f4;
+  --accent-glow: rgba(166, 135, 85, 0.18);
+  --accent-gradient: linear-gradient(135deg, #a88958 0%, #decba7 100%);
+  --accent-soft: rgba(166, 135, 85, 0.12);
+  --wallpaper-sapphire: rgba(208, 190, 157, 0.18);
+  --wallpaper-champagne: rgba(232, 218, 191, 0.36);
+  --wallpaper-ribbon: rgba(255, 255, 255, 0.4);
+  --success: #4f775b;
+  --success-glow: rgba(79, 119, 91, 0.16);
+  --warning: #96794e;
+  --warning-glow: rgba(150, 121, 78, 0.16);
+  --shadow-sm: 0 2px 8px rgba(37, 31, 21, 0.08);
+  --shadow-md: 0 8px 30px rgba(37, 31, 21, 0.12);
 }
 
 /* Base Reset */
@@ -105,16 +117,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Flowing blue-gray light ribbons */
+/* Subtle animated wallpaper with a continuously drifting color field. */
 .aurora-bg {
   position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  background: var(--bg-deep);
+}
+
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  inset: -38%;
+  z-index: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(99, 137, 154, 0.12), transparent 55%),
-    var(--bg-deep);
+    radial-gradient(ellipse at 38% 48%, var(--wallpaper-sapphire), transparent 36%),
+    radial-gradient(ellipse at 66% 52%, var(--wallpaper-champagne), transparent 32%),
+    linear-gradient(118deg, transparent 28%, var(--wallpaper-ribbon) 47%, transparent 70%);
+  filter: blur(46px);
+  opacity: 0.76;
+  will-change: transform;
+  animation: wallpaper-drift 38s ease-in-out infinite alternate;
 }
 
 .aurora-bg::before {
@@ -127,86 +152,13 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 
-.aurora-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
+[data-theme="champagne"] ::selection {
+  background: #d7bd92;
+  color: #182746;
 }
 
-.aurora-bg.webgl-active .aurora-ribbon,
-.aurora-bg.webgl-active .aurora-name-marquee {
-  opacity: 0;
-}
-
-.aurora-bg.webgl-active::after {
-  opacity: 0.22;
-}
-
-.aurora-name-marquee {
-  position: absolute;
-  top: 48%;
-  left: 0;
-  z-index: 1;
-  width: max-content;
-  color: rgba(163, 187, 196, 0.18);
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 11vw, 9.5rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  white-space: nowrap;
-  will-change: transform;
-  animation: background-name-marquee 52s linear infinite;
-}
-
-.aurora-bg::after {
-  content: '';
-  position: absolute;
-  inset: -35%;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse at 28% 42%, rgba(99, 137, 154, 0.16), transparent 34%),
-    radial-gradient(ellipse at 72% 58%, rgba(163, 187, 196, 0.1), transparent 32%);
-  filter: blur(72px);
-  opacity: 0.55;
-  will-change: transform;
-  animation: aurora-wash 32s ease-in-out infinite alternate;
-}
-
-.aurora-ribbon {
-  position: absolute;
-  left: -15%;
-  z-index: 2;
-  width: 130%;
-  height: clamp(8rem, 24vw, 22rem);
-  border-radius: 50%;
-  filter: blur(58px);
-  opacity: 0.45;
-  will-change: transform;
-  mix-blend-mode: screen;
-}
-
-.aurora-ribbon-1 {
-  top: 8%;
-  background: linear-gradient(100deg, transparent 10%, rgba(53, 88, 106, 0.12) 34%, rgba(99, 137, 154, 0.42) 54%, rgba(53, 88, 106, 0.16) 72%, transparent 92%);
-  animation: aurora-drift-1 22s ease-in-out infinite alternate;
-}
-
-.aurora-ribbon-2 {
-  top: 39%;
-  background: linear-gradient(100deg, transparent 6%, rgba(32, 55, 70, 0.18) 30%, rgba(99, 137, 154, 0.3) 50%, rgba(163, 187, 196, 0.18) 68%, transparent 90%);
-  animation: aurora-drift-2 28s ease-in-out infinite alternate;
-  opacity: 0.38;
-}
-
-.aurora-ribbon-3 {
-  top: 70%;
-  background: linear-gradient(100deg, transparent 8%, rgba(99, 137, 154, 0.28) 32%, rgba(163, 187, 196, 0.24) 51%, rgba(53, 88, 106, 0.18) 70%, transparent 94%);
-  animation: aurora-drift-3 25s ease-in-out infinite alternate;
-  opacity: 0.32;
+[data-theme="champagne"] .nav-menu {
+  background: var(--bg-glass);
 }
 
 .scroll-progress {
@@ -250,7 +202,7 @@ body {
 .loader-spinner {
   width: 3rem;
   height: 3rem;
-  border: 2px solid rgba(163, 187, 196, 0.2);
+  border: 2px solid rgba(191, 161, 129, 0.2);
   border-top-color: var(--accent-light);
   border-right-color: var(--accent);
   border-radius: 50%;
@@ -272,38 +224,10 @@ body.modal-lock {
   overflow: hidden;
 }
 
-/* Background Atmosphere Gradients */
-.ambient-glow-top {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: 1200px;
-  height: 600px;
-  background: radial-gradient(circle at 50% 15%, var(--accent-glow) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.6;
-}
-
-.ambient-glow-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: 1400px;
-  height: 500px;
-  background: radial-gradient(circle at 50% 80%, rgba(99, 137, 154, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* Selection Color */
 ::selection {
   background: var(--accent);
-  color: #101c25;
+  color: #0A1828;
 }
 
 /* Accessible Skip Link */
@@ -312,7 +236,7 @@ body.modal-lock {
   top: -60px;
   left: 1rem;
   background: var(--accent);
-  color: #101c25;
+  color: #0A1828;
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 0.875rem;
@@ -445,7 +369,7 @@ main section[id] {
 
 /* Helper Text Classes */
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-secondary) 0%, var(--text-primary) 100%);
+  background: linear-gradient(110deg, var(--accent) 0%, var(--accent-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -8,6 +8,9 @@ window.PORTFOLIO_MOTION_CONFIG = {
   easing: "cubic-bezier(0.76, 0, 0.24, 1)",
   duration: "0.9s",
   stagger: "0.08s",
+  revealVariantCount: 256,
+  revealTravel: 18,
+  revealRotation: 1.2,
   palette: {
     base: "--bg-deep",
     shadow: "--accent-dark",

@@ -1,7 +1,7 @@
 /**
  * Parag Rajeshkumar Sanghavi - Portfolio Main Script
  * Handles page navigation, menu, project modals,
- * contact form verification, email copy, and theme accents.
+ * contact form verification, email copy, and motion.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,24 +15,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.documentElement.classList.add('js-ready');
 
-  function loadWallpaper() {
-    const initializeWallpaper = () => {
-      import('./wallpaper.js')
-        .then(({ initWallpaper }) => initWallpaper(motionConfig))
-        .catch(error => console.warn('Ambient wallpaper could not be loaded.', error));
+  const themeLamp = document.getElementById('theme-lamp');
+  if (themeLamp) {
+    const themes = {
+      sapphire: 'Deep Sapphire',
+      champagne: 'Champagne'
     };
-
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(initializeWallpaper, { timeout: 1800 });
-    } else {
-      window.setTimeout(initializeWallpaper, 350);
+    let savedTheme;
+    try {
+      savedTheme = window.localStorage.getItem('portfolio-theme');
+    } catch (error) {
+      console.warn('Saved theme preference could not be read.', error);
     }
-  }
+    let activeTheme = savedTheme === 'champagne' ? 'champagne' : 'sapphire';
 
-  if (document.readyState === 'complete') {
-    loadWallpaper();
-  } else {
-    window.addEventListener('load', loadWallpaper, { once: true });
+    function applyTheme(theme) {
+      activeTheme = theme;
+      document.documentElement.dataset.theme = theme;
+      themeLamp.setAttribute('aria-label', `Change theme. Current theme: ${themes[theme]}`);
+      themeLamp.setAttribute('aria-pressed', String(theme === 'champagne'));
+      try {
+        window.localStorage.setItem('portfolio-theme', theme);
+      } catch (error) {
+        console.warn('Theme preference could not be saved.', error);
+      }
+      document.dispatchEvent(new CustomEvent('portfolio:theme-change', { detail: { theme } }));
+    }
+
+    applyTheme(activeTheme);
+    themeLamp.addEventListener('click', () => {
+      themeLamp.classList.remove('is-pulling');
+      void themeLamp.offsetWidth;
+      themeLamp.classList.add('is-pulling');
+      applyTheme(activeTheme === 'sapphire' ? 'champagne' : 'sapphire');
+    });
+    themeLamp.addEventListener('animationend', event => {
+      if (event.animationName === 'lamp-pull') themeLamp.classList.remove('is-pulling');
+    });
   }
 
   const pageLoader = document.getElementById('page-loader');
@@ -43,49 +62,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { once: true });
   }
 
-  // 1. Theme & Accent State
-  const savedAccent = localStorage.getItem('parag_accent') || 'blue';
-  applyAccent(savedAccent);
-
-  const accentBtn = document.getElementById('accent-toggle');
-  if (accentBtn) {
-    accentBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-accent') || 'blue';
-      const next = current === 'blue' ? 'steel' : (current === 'steel' ? 'ice' : 'blue');
-      applyAccent(next);
-      localStorage.setItem('parag_accent', next);
-    });
-  }
-
-  function applyAccent(accent) {
-    if (accent === 'violet') accent = 'steel';
-    if (accent === 'emerald') accent = 'ice';
-    if (!['blue', 'steel', 'ice'].includes(accent)) accent = 'blue';
-
-    document.documentElement.setAttribute('data-accent', accent);
-    const label = document.getElementById('accent-label');
-    if (label) {
-      label.textContent = accent.charAt(0).toUpperCase() + accent.slice(1);
-    }
-  }
-
-  // 2. Mobile Navigation Drawer
+  // 1. Mobile Navigation Drawer
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-menu .nav-link');
 
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  navLinks.forEach(link => {
-    const linkedPage = new URL(link.href, window.location.href).pathname.split('/').pop() || 'index.html';
-    const isCurrentPage = linkedPage === currentPage;
-    link.classList.toggle('active', isCurrentPage);
+  const navSections = Array.from(navLinks)
+    .map(link => document.getElementById(new URL(link.href, window.location.href).hash.slice(1)))
+    .filter(Boolean);
 
-    if (isCurrentPage) {
-      link.setAttribute('aria-current', 'page');
-    } else {
-      link.removeAttribute('aria-current');
-    }
-  });
+  function setActiveSection(sectionId) {
+    navLinks.forEach(link => {
+      const isActive = new URL(link.href, window.location.href).hash === `#${sectionId}`;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  const initialSection = window.location.hash.slice(1);
+  setActiveSection(navSections.some(section => section.id === initialSection) ? initialSection : 'hero');
+
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      const visibleSections = entries.filter(entry => entry.isIntersecting);
+      if (!visibleSections.length) return;
+      const activeSection = visibleSections.reduce((closest, entry) => (
+        Math.abs(entry.boundingClientRect.top) < Math.abs(closest.boundingClientRect.top)
+          ? entry
+          : closest
+      ));
+      setActiveSection(activeSection.target.id);
+    }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
+
+    navSections.forEach(section => sectionObserver.observe(section));
+  }
 
   if (navToggle && navMenu) {
     function closeNavigation() {
@@ -170,7 +184,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 4. Scroll Reveal Animation using IntersectionObserver
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const motionTargets = document.querySelectorAll(
+    '.reveal-on-scroll, .section-tag, .section-title, .section-description, .project-media-icon, .pillar-icon-box, ' +
+    '.section p, .section li, .section .tag, .section .badge, .terminal-stats > *, .hero-social-row > *, ' +
+    '.exploring-chip, .contact-method-card, .to-achieve-card'
+  );
+  const variantCount = Math.max(50, motionConfig.revealVariantCount);
+  motionTargets.forEach((element, index) => {
+    const angle = (index % variantCount) * 2.399963229728653;
+    const travel = motionConfig.revealTravel * (0.55 + ((index * 7) % 10) / 20);
+    element.classList.add('motion-reveal');
+    element.style.setProperty('--motion-sequence', index % 6);
+    element.style.setProperty('--motion-offset-x', `${(Math.cos(angle) * travel).toFixed(1)}px`);
+    element.style.setProperty('--motion-offset-y', `${(Math.sin(angle) * travel).toFixed(1)}px`);
+    element.style.setProperty('--motion-offset-scale', `${(0.975 + ((index * 3) % 8) * 0.003).toFixed(3)}`);
+    element.style.setProperty('--motion-offset-rotation', `${(Math.sin(angle * 0.73) * motionConfig.revealRotation).toFixed(2)}deg`);
+  });
+
+  const revealElements = document.querySelectorAll('.reveal-on-scroll, .motion-reveal');
   if ('IntersectionObserver' in window && revealElements.length > 0) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {

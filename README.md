@@ -6,26 +6,30 @@
 
 ```
 Portfolio/
-├── index.html            # Home page
-├── about.html             # About
-├── skills.html            # Skills
-├── projects.html          # Projects
-├── open-source.html       # Open Source
-├── journey.html           # Journey
-├── education.html         # Education
-├── achievements.html      # Achievements
-├── activities.html        # Activities
-├── contact.html           # Contact
+├── index.html            # Complete single-page portfolio
+├── about.html             # Legacy redirect to the About section
+├── skills.html            # Legacy redirect to the Skills section
+├── projects.html          # Legacy redirect to the Projects section
+├── open-source.html       # Legacy redirect to the Open Source section
+├── journey.html           # Legacy redirect to the Journey section
+├── education.html         # Legacy redirect to the Education section
+├── achievements.html      # Legacy redirect to the Achievements section
+├── activities.html        # Legacy redirect to the Activities section
+├── contact.html           # Legacy redirect to the Contact section
 ├── css/
 │   ├── main.css          # Design tokens, typography, colors, and background layers
 │   ├── components.css    # Cards, buttons, navigation, modals, and forms
-│   └── animations.css    # Aurora motion, reveals, cursor, and transitions
+│   └── animations.css    # Wallpaper motion, reveals, cursor, and transitions
 ├── js/
 │   ├── config.js         # Centralized personal info, links, projects & journey data
 │   ├── app.js            # Navigation, modals, form validation, and motion
-│   └── wallpaper.js      # Lazily loaded WebGL aurora with CSS fallback
+│   └── wallpaper.js      # Lazily loaded WebGL flowing wallpaper with CSS fallback
 └── README.md             # Documentation, customisation guide & deployment instructions
 ```
+
+The page navigation links to sections in `index.html`; existing page URLs redirect to their matching section. Motion is staged as content enters view, with the flowing full-screen wallpaper running continuously unless reduced motion is requested. Its broad color field replaces corner glows and gracefully falls back to CSS on devices without WebGL.
+
+The visual palette is deep navy (`#0A1828`), turquoise (`#178582`), and warm gold (`#BFA181`). More than 200 view-triggered motion details use restrained variations; the full-screen wallpaper remains continuously animated for visitors who have not requested reduced motion.
 
 ---
 

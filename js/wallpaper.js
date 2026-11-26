@@ -55,17 +55,23 @@ const fragmentShader = `
     vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
     p += (uPointer - 0.5) * 0.06;
     p.y += uScroll * 0.22;
-    float time = uTime * 0.018;
-    float flow = field(p * 2.2 + vec2(time, -time * 0.7));
-    float wave = sin((uv.y * 5.2 + flow * 1.8 + uScroll * 0.45) * 3.14159);
-    float band = smoothstep(0.2, 0.95, wave * 0.5 + 0.5);
-    float haze = smoothstep(0.32, 0.82, field(p * 1.35 - vec2(time * 0.6, time)));
+    float time = uTime * 0.035;
+    float drift = field(p * 1.45 + vec2(time * 0.35, -time * 0.24));
+    float wave = sin(
+      (p.y * 3.2 + (drift - 0.5) * 2.4
+        + sin(p.x * 1.55 - time * 0.65) * 0.42 + uScroll * 0.55) * 3.14159
+    );
+    float band = smoothstep(0.18, 0.92, wave * 0.5 + 0.5);
+    float haze = smoothstep(0.3, 0.78, field(p * 1.1 - vec2(time * 0.22, time * 0.17)));
     float section = clamp(uScroll * 2.0, 0.0, 1.0);
-    vec3 palette = mix(uShadow, uAccent, smoothstep(0.12, 0.82, section));
-    palette = mix(palette, uHighlight, smoothstep(0.62, 1.0, section) * 0.42);
-    float light = clamp(band * 0.11 + haze * 0.07, 0.0, 0.18);
-    float vignette = 1.0 - smoothstep(0.22, 1.18, length((uv - 0.5) * vec2(aspect, 1.0)));
-    vec3 color = mix(uBase, palette, light * (0.65 + vignette * 0.35));
+    float accentMix = mix(0.34, 0.7, smoothstep(0.0, 1.0, section));
+    vec3 palette = mix(uShadow, uAccent, accentMix);
+    float goldMix = 0.08 + smoothstep(0.38, 0.82, drift) * 0.28
+      + smoothstep(0.65, 1.0, section) * 0.16;
+    palette = mix(palette, uHighlight, clamp(goldMix, 0.0, 0.5));
+    float light = clamp(0.1 + band * 0.22 + haze * 0.18, 0.0, 0.44);
+    float vignette = 1.0 - smoothstep(0.55, 1.45, length((uv - 0.5) * vec2(aspect, 1.0)));
+    vec3 color = mix(uBase, palette, light * (0.76 + vignette * 0.24));
     gl_FragColor = vec4(color, 1.0);
   }
 `;
@@ -240,8 +246,6 @@ export function initWallpaper(config) {
     syncRenderState();
   });
   observer.observe(host);
-  const accentObserver = new MutationObserver(updatePalette);
-  accentObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-accent'] });
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('scroll', updateScroll, { passive: true });
   window.addEventListener('pointermove', event => {
