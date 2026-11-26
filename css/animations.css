@@ -6,30 +6,92 @@
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(7px);
+  transition:
+    opacity var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1)),
+    transform var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1)),
+    filter var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1));
   will-change: opacity, transform;
 }
 
 .reveal-on-scroll.revealed {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
 /* Stagger delays for grid items */
 .reveal-delay-1 {
-  transition-delay: 0.08s;
+  transition-delay: var(--motion-stagger, 0.08s);
 }
 
 .reveal-delay-2 {
-  transition-delay: 0.16s;
+  transition-delay: calc(var(--motion-stagger, 0.08s) * 2);
 }
 
 .reveal-delay-3 {
-  transition-delay: 0.24s;
+  transition-delay: calc(var(--motion-stagger, 0.08s) * 3);
 }
 
 .reveal-delay-4 {
-  transition-delay: 0.32s;
+  transition-delay: calc(var(--motion-stagger, 0.08s) * 4);
+}
+
+/* Restrained cursor treatment for mouse and trackpad users. */
+.motion-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10002;
+  display: grid;
+  width: 0.65rem;
+  height: 0.65rem;
+  place-items: center;
+  border: 1px solid var(--accent-light);
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--bg-deep);
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: difference;
+  transition:
+    width var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1)),
+    height var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1)),
+    opacity var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1));
+  will-change: transform;
+}
+
+.has-motion-cursor .motion-cursor {
+  opacity: 1;
+}
+
+.motion-cursor.is-active {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.motion-cursor span {
+  font: 600 0.55rem/1 var(--font-mono);
+  opacity: 0;
+  transition: opacity var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1));
+}
+
+.motion-cursor.is-active span:not(:empty) {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .has-motion-cursor a,
+  .has-motion-cursor button,
+  .has-motion-cursor [data-cursor-label],
+  .has-motion-cursor .project-card {
+    cursor: none;
+  }
+
+  a.btn,
+  button.btn {
+    transition: translate var(--motion-duration, 0.9s) var(--motion-ease, cubic-bezier(0.76, 0, 0.24, 1)), color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
 }
 
 /* Subtle floating animation for hero terminal */
@@ -422,6 +484,11 @@
   .reveal-on-scroll {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+
+  .motion-cursor {
+    display: none !important;
   }
 
   .float-slow,

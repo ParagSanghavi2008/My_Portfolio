@@ -4,6 +4,18 @@
  * Centralized data configuration for easy customization without altering HTML markup.
  */
 
+window.PORTFOLIO_MOTION_CONFIG = {
+  easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+  duration: "0.9s",
+  stagger: "0.08s",
+  palette: {
+    base: "--bg-deep",
+    shadow: "--accent-dark",
+    accent: "--accent",
+    highlight: "--accent-light"
+  }
+};
+
 window.PORTFOLIO_CONFIG = {
   personal: {
     name: "Parag Rajeshkumar Sanghavi",

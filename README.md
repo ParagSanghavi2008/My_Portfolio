@@ -17,12 +17,13 @@ Portfolio/
 ├── activities.html        # Activities
 ├── contact.html           # Contact
 ├── css/
-│   ├── main.css          # Design tokens, typography, colors, and animated background
+│   ├── main.css          # Design tokens, typography, colors, and background layers
 │   ├── components.css    # Cards, buttons, navigation, modals, and forms
-│   └── animations.css    # Aurora/name marquee, navigation motion, and transitions
+│   └── animations.css    # Aurora motion, reveals, cursor, and transitions
 ├── js/
 │   ├── config.js         # Centralized personal info, links, projects & journey data
-│   └── app.js            # Navigation, modals, form validation, and motion
+│   ├── app.js            # Navigation, modals, form validation, and motion
+│   └── wallpaper.js      # Lazily loaded WebGL aurora with CSS fallback
 └── README.md             # Documentation, customisation guide & deployment instructions
 ```
 

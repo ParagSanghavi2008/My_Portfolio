@@ -7,7 +7,33 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
+  const motionConfig = window.PORTFOLIO_MOTION_CONFIG;
+  const motionStyle = document.documentElement.style;
+  motionStyle.setProperty('--motion-ease', motionConfig.easing);
+  motionStyle.setProperty('--motion-duration', motionConfig.duration);
+  motionStyle.setProperty('--motion-stagger', motionConfig.stagger);
+
   document.documentElement.classList.add('js-ready');
+
+  function loadWallpaper() {
+    const initializeWallpaper = () => {
+      import('./wallpaper.js')
+        .then(({ initWallpaper }) => initWallpaper(motionConfig))
+        .catch(error => console.warn('Ambient wallpaper could not be loaded.', error));
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(initializeWallpaper, { timeout: 1800 });
+    } else {
+      window.setTimeout(initializeWallpaper, 350);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    loadWallpaper();
+  } else {
+    window.addEventListener('load', loadWallpaper, { once: true });
+  }
 
   const pageLoader = document.getElementById('page-loader');
   if (pageLoader) {
@@ -427,6 +453,52 @@ document.addEventListener('DOMContentLoaded', () => {
     '.contact-form-card',
     '.os-spotlight-card'
   ].join(', ');
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  if (finePointer.matches && !prefersReducedMotionCheck) {
+    const cursor = document.createElement('div');
+    const cursorLabel = document.createElement('span');
+    cursor.className = 'motion-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    cursor.appendChild(cursorLabel);
+    document.body.appendChild(cursor);
+    document.body.classList.add('has-motion-cursor');
+
+    document.addEventListener('pointermove', event => {
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+    }, { passive: true });
+
+    function updateCursor(target) {
+      const interactiveTarget = target instanceof Element
+        ? target.closest('a, button, [data-cursor-label], .project-card')
+        : null;
+      const labeledTarget = target instanceof Element
+        ? target.closest('[data-cursor-label], .project-card')
+        : null;
+      cursor.classList.toggle('is-active', Boolean(interactiveTarget));
+      cursorLabel.textContent = labeledTarget
+        ? (labeledTarget.getAttribute('data-cursor-label') || 'View')
+        : '';
+    }
+
+    document.addEventListener('pointerover', event => updateCursor(event.target));
+
+    document.addEventListener('pointerout', event => {
+      updateCursor(event.relatedTarget);
+    });
+
+    document.querySelectorAll('a.btn, button.btn').forEach(button => {
+      button.addEventListener('pointermove', event => {
+        const bounds = button.getBoundingClientRect();
+        const x = (event.clientX - bounds.left - bounds.width / 2) * 0.12;
+        const y = (event.clientY - bounds.top - bounds.height / 2) * 0.12;
+        button.style.translate = `${x.toFixed(1)}px ${y.toFixed(1)}px`;
+      });
+      button.addEventListener('pointerleave', () => {
+        button.style.translate = '0px 0px';
+      });
+    });
+  }
 
   document.addEventListener('click', (event) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
