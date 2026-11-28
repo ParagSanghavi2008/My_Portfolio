@@ -71,7 +71,7 @@ window.PORTFOLIO_CONFIG = {
       },
       tags: ["Artificial Intelligence", "Voice Analysis", "Security", "Python", "Audio Processing"],
       links: {
-        github: "", // Left empty to be hidden until repository is published
+        github: "https://github.com/ParagSanghavi2008/Infinite_Loops.git",
         liveDemo: "",
         paper: ""
       },
@@ -98,7 +98,61 @@ window.PORTFOLIO_CONFIG = {
       },
       tags: ["Python", "Programming", "Problem-Solving", "Algorithms", "Clean Code"],
       links: {
-        github: "https://github.com/paragsanghavi/python-programming-collection", // Placeholder GitHub repo link
+        github: "https://github.com/ParagSanghavi2008/My_Python_Practice.git",
+        liveDemo: "",
+        paper: ""
+      },
+      iconType: "code"
+    },
+    {
+      id: "lexicon-3d-studio",
+      title: "Lexicon 3D Studio (LLM Pipeline)",
+      badge: "Interactive Studio",
+      badgeType: "accent",
+      category: "LLM Systems",
+      tagline: "Explore how text becomes tokens and how words relate in a visual semantic space.",
+      description: "An interactive tokenizer and LLM pipeline studio for exploring tokenization strategies, semantic relationships, and vector concepts through a 3D visualization.",
+      extendedDetails: {
+        problemStatement: "LLM preprocessing and vector relationships can be difficult to understand when they are represented only as text or equations.",
+        approach: "Explore word, subword, and character tokenization alongside an interactive 3D word space, similarity tools, and token-level visualizations.",
+        architectureHighlights: [
+          "Interactive 3D visualization of words and semantic groups",
+          "Word, subword, and character-level tokenizer views",
+          "Cosine similarity and semantic word arithmetic tools",
+          "Token mapping, attention heatmap, and corpus analytics"
+        ],
+        statusNote: "A standalone, zero-dependency browser-based learning and visualization studio."
+      },
+      tags: ["LLMs", "Tokenization", "3D Visualization", "Embeddings", "Vanilla JavaScript"],
+      links: {
+        github: "https://github.com/ParagSanghavi2008/LLM-Pipeline.git",
+        liveDemo: "",
+        paper: ""
+      },
+      iconType: "code"
+    },
+    {
+      id: "neuralnest-llm-playground",
+      title: "NeuralNest (LLM Playground)",
+      badge: "Interactive Playground",
+      badgeType: "accent",
+      category: "LLM Systems",
+      tagline: "A focused workspace for prompt engineering, model settings, and LLM experimentation.",
+      description: "A lightweight LLM playground for composing prompts, adjusting generation parameters, exploring tool options, and generating API examples for experiments.",
+      extendedDetails: {
+        problemStatement: "Testing prompt variations and model parameters is easier when the controls, outputs, and request examples are together in one workspace.",
+        approach: "Use a standalone playground to tune generation settings, inspect prompt techniques, review session history, and generate API client snippets.",
+        architectureHighlights: [
+          "Prompt workspace with adjustable generation parameters",
+          "Streaming and JSON response controls",
+          "Generated Python, JavaScript, cURL, and JSON examples",
+          "Session history and optional Groq-powered inference"
+        ],
+        statusNote: "A standalone browser interface; live inference can be configured with a Groq API key."
+      },
+      tags: ["LLMs", "Prompt Engineering", "Groq", "API", "AI Playground"],
+      links: {
+        github: "https://github.com/ParagSanghavi2008/LLM_Playground.git",
         liveDemo: "",
         paper: ""
       },
